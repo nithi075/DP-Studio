@@ -1,70 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap');
+/* ================= GOOGLE FONTS ================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Montserrat:wght@300;400&display=swap');
 
-.services {
-  background: #0f0f0f; /* changed from light cream */
-  padding: 35px 20px;
-  display: flex;
-  justify-content: center;
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --brand-moments: #E68A2E;
+  --brand-unfolds: #8B2626;
+  --premium-bg: #F9F7F2;
+  --premium-surface: #EFEDE7;
+  --premium-dark: #2D2D2D;
+
+  --text-muted: #777;
+  --border-light: #e5e5e5;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
 }
 
-/* container */
-.services-container {
-  width: 100%;
-  max-width: 900px;
+/* ================= SECTION ================= */
+.services {
+  background: var(--premium-bg);
+  padding: 100px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ================= HEADER ================= */
+.services-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.services-header .tag {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--brand-moments);
+  font-family: var(--font-sans);
+}
+
+.services-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-top: 10px;
+  color: var(--premium-dark);
+}
+
+/* ================= MARQUEE ================= */
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+/* fade edges */
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--premium-bg), transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--premium-bg), transparent);
+}
+
+/* ================= TRACK ================= */
+.marquee-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* pause on hover */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ================= CARD ================= */
+.service-card {
+  min-width: 300px;
+  background: white;
+  padding: 30px;
+  border: 1px solid var(--border-light);
+  transition: all 0.4s ease;
+  position: relative;
+  border-radius: 10px;
+}
+
+/* hover */
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--brand-moments);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* ================= HEADER ================= */
+.service-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* each item */
-.service-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
+.service-number {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
 }
 
-/* icon */
-.service-icon {
-  font-size: 18px;
-  color: #c5a059;
+.service-star {
+  color: var(--brand-moments);
 }
 
-/* text */
-.service-text h4 {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
+/* ================= TEXT ================= */
+.service-content h4 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--premium-dark);
+}
+
+.service-content p {
+  font-family: var(--font-sans);
   font-size: 0.8rem;
-  letter-spacing: 2px;
-  margin-bottom: 3px;
-  color: #ffffff; /* added white text */
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
-.service-text p {
-  font-family: Montserrat;
-  font-size: 0.6rem;
-  color: #bdbdbd; /* updated for dark bg */
+/* ================= ANIMATED LINE ================= */
+.animated-line {
+  width: 0%;
+  height: 1px;
+  background: var(--brand-moments);
+  margin-top: 20px;
+  transition: 0.4s ease;
 }
 
-/* tablet */
-@media (min-width: 768px) {
-  .service-text h4 {
-    font-size: 1rem;
+.service-card:hover .animated-line {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .services {
+    padding: 70px 0;
   }
 
-  .service-text p {
+  .services-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .service-card {
+    min-width: 240px;
+    padding: 20px;
+  }
+
+  .service-content h4 {
+    font-size: 1.2rem;
+  }
+
+  .service-content p {
     font-size: 0.75rem;
   }
 }
-
-/* desktop */
-@media (min-width: 1024px) {
-  .services {
-    padding: 50px 20px;
-  }
-}
-
-

@@ -1,35 +1,44 @@
-import "./Services.css"
+import "./Services.css";
 
-export default function Services(){
+const SERVICE_DATA = [
+  { id: "01", title: "Brand", desc: "Elegant identity & commercial photography" },
+  { id: "02", title: "Wedding", desc: "Luxury wedding coverage & storytelling" },
+  { id: "03", title: "Editorial", desc: "High-end magazine style portrait shoots" },
+];
+
+export default function Services() {
   return (
     <section className="services">
-      <div className="services-container">
-        
-        <div className="service-item">
-          <span className="service-icon">✦</span>
-          <div className="service-text">
-            <h4>BRAND</h4>
-            <p>Elegant identity photography</p>
-          </div>
-        </div>
 
-        <div className="service-item">
-          <span className="service-icon">✦</span>
-          <div className="service-text">
-            <h4>WEDDING</h4>
-            <p>Luxury wedding coverage</p>
-          </div>
-        </div>
-
-        <div className="service-item">
-          <span className="service-icon">✦</span>
-          <div className="service-text">
-            <h4>EDITORIAL</h4>
-            <p>Magazine style shoots</p>
-          </div>
-        </div>
-
+      <div className="services-header">
+        <span className="tag">OUR SERVICES</span>
+        <h2>WHAT WE DO</h2>
       </div>
+
+      <div className="marquee">
+        <div className="marquee-track">
+
+          {[...SERVICE_DATA, ...SERVICE_DATA].map((service, index) => (
+            <div key={index} className="service-card">
+
+              <div className="service-header">
+                <span className="service-number">{service.id}</span>
+                <span className="service-star">✦</span>
+              </div>
+
+              <div className="service-content">
+                <h4>{service.title}</h4>
+                <p>{service.desc}</p>
+              </div>
+
+              <div className="animated-line"></div>
+
+            </div>
+          ))}
+
+        </div>
+      </div>
+
     </section>
-  )
+  );
 }

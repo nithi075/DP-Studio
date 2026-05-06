@@ -1,192 +1,282 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap');
+/* ================= ABOUT SECTION BASE ================= */
+.about-section {
+  padding: 120px 20px;
+  background-color: #FDFCF9; /* Luxury Ivory White */
+  overflow: hidden;
+}
 
-/* section */
-.about {
-  background: #0f0f0f;   /* changed from light to black */
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
+.about-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
-  text-align: center;
-  gap: 40px;
 }
 
-/* text area */
-.about h2 {
-  font-family: "Cormorant Garamond", serif;
+/* ================= CONTENT STYLES ================= */
+.about-header {
+  margin-bottom: 40px;
+}
+
+.about-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #E68A2E; /* Moments Orange */
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.1;
+  color: #1A1A1A;
   font-weight: 400;
-  letter-spacing: 2px;
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  color: #ffffff; /* added for visibility */
 }
 
-/* paragraph */
-.about p {
-  font-family: Montserrat;
-  font-size: 0.75rem;
-  color: #d1d1d1; /* updated for dark bg */
-  max-width: 320px;
-  margin: auto;
+.about-title span {
+  color: #8B2626; /* Unfolds Red */
+  font-style: italic;
+}
+
+.about-body-text p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   line-height: 1.8;
+  color: #555;
+  margin-bottom: 25px;
 }
 
-/* button */
-.about button {
-  margin-top: 18px;
-  background: #c5a059;
-  color: white;
-  border: none;
-  padding: 10px 22px;
-  font-size: 0.6rem;
+.highlight-text {
+  font-size: 18px !important;
+  color: #222 !important;
+  font-weight: 500;
+}
+
+.signature-box {
+  margin-top: 40px;
+  border-left: 2px solid #E68A2E;
+  padding-left: 20px;
+}
+
+.signature-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #1A1A1A;
+}
+
+.signature-box p {
+  font-size: 10px;
   letter-spacing: 2px;
-  cursor: pointer;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 5px;
 }
 
-/* ---------------- IMAGE SECTION ---------------- */
+/* ================= VISUAL NARRATIVE (Images) ================= */
+.about-visuals {
+  position: relative;
+}
 
-.about-images {
+.image-stack {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  height: 500px;
+  height: 600px;
 }
 
-/* main top image */
-.main-img {
+.main-img-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+}
+
+.about-main-img {
   width: 100%;
-  height: 360px;
+  height: 100%;
   object-fit: cover;
+  box-shadow: 30px 30px 60px rgba(0,0,0,0.1);
+}
+
+.secondary-img-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 3;
+}
+
+.about-small-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 10px solid #FDFCF9;
+  box-shadow: 20px 20px 40px rgba(0,0,0,0.1);
+}
+
+/* ================= FLOATING EXPERIENCE CARD ================= */
+.floating-experience-card {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  background: #1A1A1A;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+  z-index: 4;
+  box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
+}
+
+.exp-number {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: #E68A2E;
+}
+
+.exp-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 10px;
   display: block;
 }
 
-/* small overlapping image */
-.small-img {
-  position: absolute;
-  bottom: 40px;
-  right: 0;
-  width: 220px;
-  height: 140px;
-  object-fit: cover;
-  border: 5px solid #0f0f0f; /* updated to match black background */
+/* ================= SCROLL REVEAL ANIMATION ================= */
+.about-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* experience badge */
-.experience-box {
-  position: absolute;
-  top: 20px;
-  right: 0;
-  width: 110px;
-  height: 110px;
-  background: #c5a059;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.show-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* badge number */
-.experience-box h3 {
-  font-size: 2rem;
-  margin: 0;
-  font-weight: bold;
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 100px;
+    text-align: center;
+  }
+  
+  .signature-box {
+    border-left: none;
+    border-top: 2px solid #E68A2E;
+    padding-left: 0;
+    padding-top: 20px;
+    display: inline-block;
+  }
+
+  .image-stack {
+    height: 500px;
+  }
 }
 
-/* badge text */
-.experience-box p {
-  font-size: 0.65rem;
-  text-align: center;
-  margin: 0;
-  line-height: 1.4;
-  color: black;
+@media (max-width: 600px) {
+  .about-section {
+    padding: 60px 20px;
+  }
+  
+  .floating-experience-card {
+    padding: 20px;
+    top: -20px;
+    left: 10px;
+  }
 }
+/* ================= MOBILE ONLY ================= */
+@media (max-width: 768px) {
 
-/* ---------------- TABLET ---------------- */
+  .about-section {
+    padding: 60px 20px;
+  }
 
-@media (min-width: 768px) {
-  .about {
-    flex-direction: row;
-    text-align: left;
-    justify-content: center;
-    align-items: center;
+  .about-container {
+    grid-template-columns: 1fr;
     gap: 60px;
+    text-align: center;
   }
 
-  .about div {
-    max-width: 400px;
+  /* ================= TEXT ================= */
+
+  .about-subtitle {
+    font-size: 9px;
+    letter-spacing: 3px;
   }
 
-  .about p {
-    margin: 0;
+  .about-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    line-height: 1.2;
   }
 
-  .about-images {
-    max-width: 450px;
-    height: 550px;
+  .about-body-text p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 
-  .main-img {
-    height: 400px;
+  .highlight-text {
+    font-size: 15px !important;
   }
 
-  .small-img {
-    width: 250px;
-    height: 160px;
-    bottom: 50px;
-  }
-}
-
-/* ---------------- DESKTOP ---------------- */
-
-@media (min-width: 1024px) {
-  .about {
-    padding: 80px 20px;
+  /* signature */
+  .signature-box {
+    border-left: none;
+    border-top: 2px solid #E68A2E;
+    padding-left: 0;
+    padding-top: 15px;
+    margin-top: 30px;
+    display: inline-block;
   }
 
-  .about h2 {
+  .signature-text {
+    font-size: 1.2rem;
+  }
+
+  /* ================= IMAGES ================= */
+
+  .image-stack {
+    height: 420px;
+  }
+
+  .main-img-container {
+    width: 85%;
+    height: 85%;
+  }
+
+  .secondary-img-container {
+    width: 55%;
+    height: 45%;
+  }
+
+  .about-small-img {
+    border: 6px solid #FDFCF9;
+  }
+
+  /* ================= FLOAT CARD ================= */
+
+  .floating-experience-card {
+    padding: 15px;
+    top: -15px;
+    left: 10px;
+  }
+
+  .exp-number {
     font-size: 2rem;
   }
 
-  .about p {
-    font-size: 0.9rem;
+  .exp-label {
+    font-size: 8px;
   }
 
-  .about-images {
-    max-width: 500px;
-    height: 600px;
-  }
-
-  .main-img {
-    height: 450px;
-  }
-
-  .small-img {
-    width: 280px;
-    height: 180px;
-    bottom: 60px;
-  }
-}
-
-/* Update the paragraph style to handle multiple blocks */
-.about-text p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.85rem;
-  color: #d1d1d1; /* updated for dark theme */
-  max-width: 450px;
-  margin-bottom: 15px;
-  line-height: 1.8;
-}
-
-/* Ensure the text container aligns well on desktop */
-@media (min-width: 768px) {
-  .about-content {
-    text-align: left;
-    max-width: 500px;
-  }
-  
-  .about-text p {
-    margin-left: 0;
-    margin-right: 0;
-  }
 }

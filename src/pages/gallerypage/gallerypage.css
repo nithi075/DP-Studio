@@ -1,335 +1,396 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+/* ================= FONTS ================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600&display=swap');
 
+/* ================= ROOT VARIABLES ================= */
 :root {
-    --gold: #c5a059;
-    --dark: #ffffff;
-    --white: #ffffff;
-    --bg-soft: #0f0f0f;
-    --card-dark: #1a1a1a;
-    --text-gray: #bdbdbd;
+  --brand-moments: #E68A2E;
+  --premium-bg: #FDFCF9; 
+  --premium-surface: #F4F1EA;
+  --premium-dark: #1A1A1A;
+  --text-muted: #666;
+  --border-light: #E8E4D9;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =========================
-   BASE STYLES
-========================= */
+/* ================= PAGE CONTAINER ================= */
 .gallery-page-container {
-    background-color: var(--bg-soft);
-    min-height: 100vh;
+  background-color: var(--premium-bg);
+  min-height: 100vh;
 }
 
 .gallery-main-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 90px 10px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 80px; /* Top padding removed because of sticky nav */
 }
 
-/* =========================
-   TABS
-========================= */
+/* ================= STICKY TABS (Glassmorphism) ================= */
 .text-tabs-wrapper {
-    margin-bottom: 40px;
-    position: sticky;
-    top: 0;
-    background: var(--bg-soft);
-    z-index: 100;
-    padding: 15px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(253, 252, 249, 0.85); 
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  padding: 25px 0;
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .text-tabs-scroll {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 15px;
 }
 
-.text-tabs-scroll::-webkit-scrollbar {
-    display: none;
-}
+.text-tabs-scroll::-webkit-scrollbar { display: none; }
 
 .nav-text-item {
-    font-family: "Montserrat", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-gray);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: 0.3s ease;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 5px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 8px;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
 }
 
 .nav-text-item.active {
-    color: var(--white);
-    border-bottom: 2px solid var(--gold);
+  color: var(--premium-dark);
 }
 
-/* =========================
-   HEADER SECTION
-========================= */
+.nav-text-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brand-moments);
+}
+
+/* ================= HEADER ================= */
 .category-info {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 0 10px;
+  text-align: center;
+  margin-bottom: 70px;
 }
 
 .premium-label {
-    font-family: "Montserrat", sans-serif;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: var(--brand-moments);
+  display: block;
+  margin-bottom: 15px;
 }
 
 .category-info h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 32px;
-    color: var(--white);
-    font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  color: var(--premium-dark);
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 
 .accent-line {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin: 15px auto;
+  width: 50px;
+  height: 1px;
+  background: var(--brand-moments);
+  margin: 0 auto 25px;
 }
 
 .category-desc {
-    max-width: 500px;
-    margin: auto;
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-gray);
+  max-width: 600px;
+  margin: auto;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
 }
 
-/* =========================
-   GRID
-========================= */
+/* ================= LUXURY GRID (2 in row for Mobile) ================= */
 .luxury-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Mobile: 2 in row */
+  gap: 15px; /* Tight gap for premium look on mobile */
 }
 
-.collection-card,
-.grid-item-detail {
-    position: relative;
-    overflow: hidden;
-    background: var(--card-dark);
-    aspect-ratio: 3/4;
+.collection-card, .grid-item-detail {
+  position: relative;
+  overflow: hidden;
+  background: var(--premium-surface);
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.img-box,
-.img-wrapper {
-    width: 100%;
-    height: 100%;
+.img-box, .img-wrapper {
+  width: 100%;
+  height: 100%;
 }
 
-.img-box img,
-.img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+.img-box img, .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-/* Card Overlay */
+/* ================= OVERLAYS ================= */
 .card-content-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.85) 0%,
-        transparent 60%
-    );
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 15px;
-    color: white;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: #fff;
+  opacity: 0.9; /* Visible on mobile for context */
+  transition: var(--transition-smooth);
 }
 
 .card-content-overlay h3 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 18px;
-    margin-bottom: 5px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .explore-btn {
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--gold);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (min-width: 768px) {
-    .gallery-main-wrapper {
-        padding: 120px 40px 80px;
-    }
+/* Detailed view minimal overlay */
+.minimal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-    .luxury-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
-
-    .category-info h2 {
-        font-size: 55px;
-    }
-
-    .nav-text-item {
-        font-size: 12px;
-    }
-
-    .collection-card:hover img,
-    .grid-item-detail:hover img {
+/* ================= HOVER EFFECTS (Desktop Only) ================= */
+@media (min-width: 1024px) {
+    .collection-card:hover img, .grid-item-detail:hover img {
         transform: scale(1.08);
     }
-}
-
-@media (min-width: 1024px) {
-    .luxury-grid {
-        grid-template-columns: repeat(3, 1fr);
+    
+    .grid-item-detail:hover .minimal-overlay {
+        opacity: 1;
     }
-}
 
-/* =========================
-   ANIMATIONS
-========================= */
-.fade-up {
-    animation: fadeUp 0.8s ease forwards;
-}
-
-@keyframes fadeUp {
-    from {
+    .card-content-overlay {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(10px);
     }
-    to {
+
+    .collection-card:hover .card-content-overlay {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.loader-container {
-    text-align: center;
-    padding: 100px 0;
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    color: var(--gold);
+/* ================= CTA SECTION ================= */
+.gallery-package-cta {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--premium-surface);
+  margin-top: 100px;
+  border-radius: 8px;
 }
 
-.no-images-fallback {
-    grid-column: span 2;
-    text-align: center;
-    padding: 80px 20px;
-    color: white;
+.gallery-package-cta h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.view-package-btn {
+  background: var(--premium-dark);
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.view-package-btn:hover {
+    background: var(--brand-moments);
+    transform: translateY(-3px);
+}
+
+/* ================= FALLBACKS & LOADER ================= */
+.loader-container, .no-images-fallback {
+  text-align: center;
+  padding: 100px 0;
+  font-family: var(--font-serif);
+  color: var(--text-muted);
 }
 
 .back-home-btn {
-    background: var(--gold);
-    color: white;
-    border: none;
-    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--premium-dark);
+    padding: 10px 25px;
     margin-top: 20px;
-    font-size: 12px;
     text-transform: uppercase;
+    font-size: 11px;
     letter-spacing: 1px;
     cursor: pointer;
 }
 
-/* CTA Section */
-.gallery-package-cta {
-    text-align: center;
-    padding: 80px 20px;
-    background: #111111;
-    margin-top: 60px;
-    border-top: 1px solid rgba(197, 160, 89, 0.2);
+/* ================= ANIMATION ================= */
+.fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
 }
 
-.gallery-package-cta h2 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    font-family: "Cormorant Garamond", serif;
-    color: white;
-    font-weight: 500;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.gallery-package-cta p {
-    color: var(--text-gray);
-    margin-bottom: 30px;
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (min-width: 768px) {
+  .luxury-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .gallery-main-wrapper {
+      padding: 0 40px 100px;
+  }
 }
 
-/* Premium Package Button */
-.view-package-btn {
+@media (max-width: 600px) {
+    .text-tabs-scroll {
+        justify-content: flex-start;
+    }
+    
+    .category-info h2 {
+        font-size: 1.8rem;
+    }
+}
+/* View More Section */
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.view-more-btn {
     background: transparent;
-    color: var(--gold);
-    border: 1.5px solid var(--gold);
-    padding: 14px 34px;
-    cursor: pointer;
-    border-radius: 50px;
-    font-size: 12px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
+    border: 1px solid var(--premium-dark);
+    color: var(--premium-dark);
+    padding: 15px 35px;
+    font-family: var(--font-sans);
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
 }
 
-.view-package-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gold);
-    transition: 0.4s ease;
-    z-index: -1;
+.view-more-btn:hover {
+    background: var(--premium-dark);
+    color: #fff;
+    transform: translateY(-3px);
 }
 
-.view-package-btn:hover::before {
-    left: 0;
+/* Integrated Packages Styling */
+.wedding-packages-integrated {
+    margin-top: 100px;
+    padding-top: 50px;
+    border-top: 1px solid var(--border-light);
 }
 
-.view-package-btn:hover {
-    color: white;
-    transform: translateY(-4px);
-    box-shadow: 0px 10px 25px rgba(197, 160, 89, 0.25);
+/* Make sure mobile grid is 2-column as requested */
+@media (max-width: 767px) {
+    .luxury-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+}
+/* Navbar mela theriya idhu romba mukkiyam */
+.gallery-page-container nav, 
+.navbar-container { /* Unga navbar class name ethuvo atha poodunga */
+  z-index: 2000 !important; 
+  position: sticky;
+  top: 0;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .gallery-package-cta {
-        padding: 60px 20px;
-    }
+/* Gallery tabs unga Navbar-ku KEELA varanum */
+.text-tabs-wrapper {
+  position: sticky;
+  /* Top value-ah unga Navbar height-ku eatha maari adjust pannanum */
+  /* Unga navbar 80px height-na, top: 80px nu vaiyunga */
+  top: 70px; 
+  background: rgba(253, 252, 249, 0.9);
+  backdrop-filter: blur(15px);
+  z-index: 1000; /* Navbar-ah vida kammiya irukanum */
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
 
-    .gallery-package-cta h2 {
-        font-size: 2rem;
-    }
+/* Background color issues iruntha */
+.gallery-page-container {
+  background-color: var(--premium-bg);
+  min-height: 100vh;
+  padding-top: 0; /* Extra space eduthalum remove pannidum */
+}
+/* ================= GALLERY PAGE EXCLUSIVE NAVBAR OVERRIDE ================= */
 
-    .gallery-package-cta p {
-        font-size: 0.95rem;
-    }
+/* Navbar container and links focus */
+.gallery-page-container nav, 
+.gallery-page-container .navbar, 
+.gallery-page-container .nav-links a,
+.gallery-page-container .nav-menu a,
+.gallery-page-container .navbar-logo {
+    color: #1A1A1A !important; /* Force Black color */
+}
 
-    .view-package-btn {
-        padding: 12px 26px;
-        font-size: 11px;
-    }
+/* If your navbar has a background that needs to be light to show the black text */
+.gallery-page-container nav, 
+.gallery-page-container .navbar-container {
+    background-color: rgba(253, 252, 249, 0.98) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Menu Icon (Hamburger) Black-ah maatha */
+.gallery-page-container .mobile-menu-icon,
+.gallery-page-container .hamburger span {
+    background-color: #1A1A1A !important;
+    color: #1A1A1A !important;
+}
+
+/* Gallery Tabs overlap aagama irukka Navbar height check panni top value vai */
+.text-tabs-wrapper {
+    position: sticky;
+    top: 70px; /* Adjust this based on your Navbar height */
+    z-index: 999;
 }

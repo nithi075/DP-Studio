@@ -1,84 +1,168 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --brand-moments: #E68A2E; /* Orange from image */
+  --brand-unfolds: #8B2626; /* Red/Maroon from image */
+  --premium-bg: #F9F7F2;    /* Luxury Off-white */
+  --premium-surface: #EFEDE7;
+  --premium-dark: #1A1A1A;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+/* ================= SECTION ================= */
 .portfolio {
   width: 100%;
-  background: #0f0f0f; /* changed from white */
-  padding: 80px 20px;
+  background: var(--premium-bg);
+  padding: 100px 0;
   overflow: hidden;
+}
+
+/* Mobile responsive padding for section */
+@media (max-width: 768px) {
+  .portfolio {
+    padding: 60px 0;
+  }
 }
 
 .portfolio-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .portfolio-header {
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
+  
 }
 
 .p-tag {
-  color: #d4a373;
-  font-size: 13px;
-  letter-spacing: 4px;
+  color: var(--brand-moments);
+  font-size: 12px;
+  letter-spacing: 5px;
   text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-weight: 600;
 }
 
 .portfolio-header h2 {
-  font-family: "Playfair Display";
-  font-size: 42px;
-  margin: 15px 0;
-  color: white; /* added */
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 300;
+  margin: 10px 0;
+  color: var(--premium-dark);
+  letter-spacing: -1px;
 }
+
+
 
 .accent-line {
   width: 50px;
-  height: 1px;
-  background: #d4a373;
-  margin: auto;
+  height: 2px;
+  background: var(--brand-unfolds);
+  margin: 25px auto;
 }
 
+/* ================= SLIDER CONTAINER ================= */
 .portfolio-slider-container {
-  height: 600px;
+  height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1800px;
+  perspective: 2000px;
+}
+
+/* Mobile height adjustment */
+@media (max-width: 768px) {
+  .portfolio-slider-container {
+    height: 500px;
+  }
 }
 
 .portfolio-slider {
   position: relative;
   width: 100%;
-  max-width: 1200px;
   height: 100%;
+  transform-style: preserve-3d;
 }
 
 .portfolio-card {
   position: absolute;
-  width: 380px;
-  height: 520px;
+  width: 420px;
+  height: 580px;
   left: 50%;
-  margin-left: -190px;
-  border-radius: 8px;
+  margin-left: -210px;
+  border-radius: 4px; /* Minimalist sharp edges */
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.8s ease;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
 }
 
+/* Mobile card dimension adjustment */
+@media (max-width: 768px) {
+  .portfolio-card {
+    width: 300px;
+    height: 420px;
+    margin-left: -150px;
+    border-radius: 6px; /* Slightly smoother for mobile */
+  }
+  .p-tag{
+    font-size: 0.6rem;
+  }
+}
+
+/* CARD STATES */
 .portfolio-card.active {
   z-index: 10;
-  transform: scale(1);
+  transform: scale(1.05) translateZ(0);
   opacity: 1;
 }
 
+/* Mobile active card stays sharp but clean */
+@media (max-width: 768px) {
+  .portfolio-card.active {
+    transform: scale(1.03) translateZ(0); /* Less scale on mobile */
+  }
+}
+
 .portfolio-card.left-side {
-  transform: translateX(-55%) scale(0.8) rotateY(20deg);
-  opacity: 0.4;
+  transform: translateX(-75%) scale(0.85) rotateY(25deg);
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+
+/* Mobile side card styling (reduce rotation & translation) */
+@media (max-width: 768px) {
+  .portfolio-card.left-side {
+    transform: translateX(-60%) scale(0.8) rotateY(15deg);
+    opacity: 0.3; /* Less visible on mobile edges */
+  }
 }
 
 .portfolio-card.right-side {
-  transform: translateX(55%) scale(0.8) rotateY(-20deg);
-  opacity: 0.4;
+  transform: translateX(75%) scale(0.85) rotateY(-25deg);
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+
+/* Mobile side card styling (reduce rotation & translation) */
+@media (max-width: 768px) {
+  .portfolio-card.right-side {
+    transform: translateX(60%) scale(0.8) rotateY(-15deg);
+    opacity: 0.3; /* Less visible on mobile edges */
+  }
 }
 
 .portfolio-card.hidden {
   opacity: 0;
+  transform: scale(0.5) translateZ(-200px);
   pointer-events: none;
 }
 
+/* ================= IMAGE & OVERLAY ================= */
 .image-wrapper {
   width: 100%;
   height: 100%;
@@ -89,162 +173,165 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.glass-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.3),
-    transparent
-  );
-  transform: skewX(-25deg);
-  transition: 0.8s;
-}
-
-.portfolio-card.active:hover .glass-shine {
-  left: 150%;
+  transition: transform 2s ease;
 }
 
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.8),
-    transparent
-  );
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 30px;
-  color: white;
+  padding: 50px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* In mobile, active card shows overlay immediately for UX */
+@media (max-width: 768px) {
+  .card-overlay {
+    padding: 25px;
+  }
+  .portfolio-header h2{
+    font-size: 1.7rem;
+  }
+}
+
+.portfolio-card.active .card-overlay {
+  opacity: 1;
 }
 
 .cat-label {
-  color: #d4a373;
-  font-size: 12px;
-  letter-spacing: 2px;
+  color: var(--brand-moments);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .cat-label {
+    font-size: 9px;
+  }
 }
 
 .card-title {
-  font-size: 28px;
-  margin: 10px 0;
-  font-family: "Playfair Display";
-  color: white;
+  font-size: 2.4rem;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
-.card-desc-short {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: rgba(255,255,255,0.85);
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1.6rem;
+  }
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  transition: all 0.5s ease 0.2s;
+}
+
+/* In mobile, active card already shows full description on show, no need for hover */
+@media (max-width: 768px) {
+  .portfolio-card.active .card-desc {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 10px;
+    font-size: 0.75rem;
+  }
+}
+
+.portfolio-card.active:hover .card-desc {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+/* Mobile desc behavior on active card always show */
+@media (max-width: 768px) {
+  .portfolio-card.active:hover .card-desc {
+    max-height: 80px; /* same as above */
+    margin-top: 10px;
+  }
 }
 
 .view-story-btn {
+  margin-top: 25px;
   width: fit-content;
-  padding: 10px 20px;
-  border: 1px solid white;
-  font-size: 12px;
-  color: white;
+  padding: 12px 28px;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
 }
 
+@media (max-width: 768px) {
+  .view-story-btn {
+    padding: 10px 22px;
+    font-size: 9px;
+    margin-top: 15px;
+  }
+}
+
+.view-story-btn:hover {
+  background: #fff;
+  color: var(--premium-dark);
+}
+
+/* ================= PAGINATION ================= */
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 30px;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+/* Mobile dot responsiveness */
+@media (max-width: 768px) {
+  .pagination {
+    margin-top: 30px;
+    gap: 8px;
+  }
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  border: none;
-  background: #444; /* changed from light gray */
+  border: 1px solid var(--brand-moments);
+  background: transparent;
   border-radius: 50%;
   cursor: pointer;
+  transition: 0.4s;
+}
+
+/* Mobile dot size refinement */
+@media (max-width: 768px) {
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
 }
 
 .dot.active {
-  background: #d4a373;
-  width: 30px;
+  background: var(--brand-unfolds);
+  border-color: var(--brand-unfolds);
+  width: 35px;
   border-radius: 10px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .portfolio {
-    padding: 50px 15px;
-  }
-
-  .portfolio-header h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-  }
-
-  .p-tag {
-    font-family: Montserrat;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-  }
-
-  .portfolio-slider-container {
-    height: 450px;
-  }
-
-  .portfolio-card {
-    width: 280px;
-    height: 380px;
-    margin-left: -140px;
-  }
-
-  .portfolio-card.left-side {
-    transform: translateX(-40%)
-      scale(0.75)
-      rotateY(15deg);
-  }
-
-  .portfolio-card.right-side {
-    transform: translateX(40%)
-      scale(0.75)
-      rotateY(-15deg);
-  }
-
-  .card-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-  }
-
-  .card-desc-short {
-    font-family: Montserrat;
-    font-size: 0.75rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.85);
-    display: block;
-  }
-
-  .cat-label {
-    font-family: Montserrat;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-  }
-
-  .view-story-btn {
-    font-family: Montserrat;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    padding: 8px 16px;
-  }
-
-  .card-overlay {
-    padding: 20px;
-  }
 }

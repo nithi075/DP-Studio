@@ -32,9 +32,9 @@ return (
 <> <section id="home"> <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> <Hero /> </section>
 
 
-  <section id="services">
+  {/* <section id="services">
     <Services />
-  </section>
+  </section> */}
 
   <section id="gallery">
     <Gallery />
@@ -60,9 +60,9 @@ return (
     <Instagram />
   </section>
 
-  <section id="blog">
+  {/* <section id="blog">
     <Blog />
-  </section>
+  </section> */}
 
   <section id="location">
     <Location />

@@ -56,7 +56,7 @@ export default function Featured() {
 
   const handleInstagramRedirect = () => {
     window.open(
-      "https://www.instagram.com/theweddingcraft.in/",
+      "https://www.instagram.com/dp_photography_tn76/",
       "_blank"
     );
   };

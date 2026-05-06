@@ -1,41 +1,58 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --brand-moments: #E68A2E;
+  --brand-unfolds: #8B2626;
+  --premium-bg: #F9F7F2;
+  --premium-surface: #EFEDE7;
+  --premium-dark: #2D2D2D;
+
+  --text-muted: #777;
+  --border-light: #ddd;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+/* ================= SECTION ================= */
 .featured {
-  background: #0f0f0f; /* changed from cream */
+  background: var(--premium-bg);
   padding: 60px 20px;
   text-align: center;
 }
 
-/* small tag */
+/* ================= TAG ================= */
 .tag {
   font-size: 0.6rem;
   letter-spacing: 3px;
-  color: #c5a059;
-  font-family: "Montserrat", sans-serif;
+  color: var(--brand-moments);
+  font-family: var(--font-sans);
   text-transform: uppercase;
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
-/* heading */
+/* ================= HEADING ================= */
 .featured h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-serif);
   font-size: 1.7rem;
   font-weight: 400;
-  color: white; /* changed from #111 */
+  color: var(--premium-dark);
   letter-spacing: 2px;
   margin-bottom: 25px;
 }
 
-/* main image */
+/* ================= MAIN IMAGE ================= */
 .featured-main {
   width: 100%;
   max-width: 900px;
   margin: auto;
   display: block;
   margin-bottom: 15px;
+  border-radius: 10px;
 }
 
-/* collage grid */
+/* ================= GRID ================= */
 .featuredGrid {
   max-width: 900px;
   margin: auto;
@@ -44,18 +61,19 @@
   gap: 8px;
 }
 
-/* images */
+/* ================= IMAGES ================= */
 .featuredGrid img {
   width: 100%;
   height: 120px;
   object-fit: cover;
+  border-radius: 6px;
 }
 
-/* gold quote box */
+/* ================= QUOTE BOX ================= */
 .quote-box {
-  background: #c5a059;
-  color: white;
-  font-family: "Cormorant Garamond", serif;
+  background: var(--premium-surface);
+  color: var(--premium-dark);
+  font-family: var(--font-serif);
   font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 2px;
@@ -64,38 +82,42 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  border-radius: 6px;
 }
 
-/* button */
+/* ================= BUTTON ================= */
 .featured-btn {
   margin-top: 40px;
-  background: #c5a059;
-  color: white;
+  background: var(--brand-moments);
+  color: #fff;
   border: none;
   padding: 10px 22px;
   font-size: 0.6rem;
   letter-spacing: 2px;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   text-transform: uppercase;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 6px;
 }
 
 .featured-btn:hover {
-  background: #b08d57;
+  background: var(--premium-dark);
+  color: #fff;
 }
 
-/* video container */
+/* ================= VIDEO CONTAINER ================= */
 .featured-video-container {
   width: 100%;
   max-width: 900px;
   margin: 25px auto;
   overflow: hidden;
   border-radius: 10px;
+  border: 1px solid var(--border-light);
 }
 
-/* video */
+/* ================= VIDEO ================= */
 .featured-video {
   width: 100%;
   height: 500px;
@@ -103,7 +125,7 @@
   display: block;
 }
 
-/* tablet */
+/* ================= TABLET ================= */
 @media (min-width: 768px) {
   .featuredGrid img {
     height: 150px;
@@ -114,7 +136,7 @@
   }
 }
 
-/* desktop */
+/* ================= DESKTOP ================= */
 @media (min-width: 1024px) {
   .featured {
     padding: 90px 20px;
@@ -129,7 +151,7 @@
   }
 }
 
-/* mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .featured-video {
     height: 250px;

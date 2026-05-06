@@ -2,7 +2,7 @@ import "./floating.css";
 import { MessageCircleMore } from "lucide-react";
 
 export default function FloatingChat() {
-  const whatsappNumber = "917092263880";
+  const whatsappNumber = "917305357303"; // Replace with your actual WhatsApp number
 
   const message =
     "Hello The Wedding Craft, I'm looking for a premium photography session.";

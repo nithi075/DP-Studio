@@ -1,168 +1,273 @@
 import "./Testimonials.css";
+
 import {
   useEffect,
-  useState
+  useRef,
+  useState,
 } from "react";
+
 import api from "../../services/api";
 
 export default function Testimonials() {
-  const [testimonials, setTestimonials] =
+
+  const containerRef =
+    useRef(null);
+
+  const [reviews, setReviews] =
     useState([]);
-  const [activeIndex, setActiveIndex] =
-    useState(0);
+
+  /* ================= FETCH ================= */
 
   useEffect(() => {
-    fetchTestimonials();
-  }, []);
 
-  const fetchTestimonials =
-    async () => {
-      try {
-        const res =
-          await api.get(
-            "/testimonial/all"
+    const fetchTestimonials =
+      async () => {
+
+        try {
+
+          const res =
+            await api.get(
+              "/testimonial/all"
+            );
+
+          console.log(
+            "Testimonials:",
+            res.data
           );
 
-        console.log(
-          "Testimonials:",
-          res.data
-        );
+          setReviews(
+            Array.isArray(
+              res.data
+            )
+              ? res.data
+              : []
+          );
 
-        setTestimonials(
-          Array.isArray(
-            res.data
-          )
-            ? res.data
-            : []
-        );
-      } catch (error) {
-        console.error(
-          "Error fetching testimonials:",
-          error
-        );
-      }
-    };
+        } catch (error) {
 
-  // Auto slide every 4 sec
-  useEffect(() => {
+          console.log(
+            "Failed to fetch testimonials",
+            error
+          );
+        }
+      };
+
+    fetchTestimonials();
+
+  }, []);
+
+  /* ================= IMAGE URL ================= */
+
+  const getImageUrl = (
+    item
+  ) => {
+
+    // Full URL image
     if (
-      testimonials.length ===
-      0
-    )
-      return;
-
-    const interval =
-      setInterval(() => {
-        setActiveIndex(
-          (prev) =>
-            prev ===
-            testimonials.length -
-              1
-              ? 0
-              : prev + 1
-        );
-      }, 4000);
-
-    return () =>
-      clearInterval(
-        interval
-      );
-  }, [testimonials]);
-
-  const activeTestimonial =
-    testimonials[
-      activeIndex
-    ];
-
-  const getImageUrl = () => {
-    if (
-      activeTestimonial?.image &&
-      activeTestimonial.image.startsWith(
+      item?.image &&
+      item.image.startsWith(
         "http"
       )
     ) {
-      return activeTestimonial.image;
+      return item.image;
     }
 
+    // Local uploaded image
     if (
-      activeTestimonial?.image
+      item?.image
     ) {
-      return `http://localhost:5000/uploads/${activeTestimonial.image}`;
+      return `http://localhost:5000/uploads/${item.image}`;
     }
 
+    // Alternative imageUrl field
     if (
-      activeTestimonial?.imageUrl
+      item?.imageUrl
     ) {
-      return activeTestimonial.imageUrl;
+      return item.imageUrl;
     }
 
     return "";
   };
 
+  /* ================= AUTO SLIDE ================= */
+
+  useEffect(() => {
+
+    const container =
+      containerRef.current;
+
+    if (
+      !container ||
+      reviews.length === 0
+    )
+      return;
+
+    let currentIndex = 0;
+
+    const autoSlide = () => {
+
+      const cards =
+        container.querySelectorAll(
+          ".journal-card"
+        );
+
+      if (!cards.length)
+        return;
+
+      const cardWidth =
+        cards[0]
+          .offsetWidth + 22;
+
+      currentIndex++;
+
+      if (
+        currentIndex >=
+        reviews.length
+      ) {
+        currentIndex = 0;
+      }
+
+      container.scrollTo({
+        left:
+          currentIndex *
+          cardWidth,
+        behavior: "smooth",
+      });
+
+    };
+
+    const interval =
+      setInterval(
+        autoSlide,
+        3500
+      );
+
+    return () =>
+      clearInterval(
+        interval
+      );
+
+  }, [reviews]);
+
   return (
-    <section className="testimonials">
-      <span className="tag">
-        WHAT CLIENTS SAY
-      </span>
 
-      <h2>
-        TESTIMONIALS
-      </h2>
+    <section
+      className="testimonials"
+      id="testimonials"
+    >
 
-      {activeTestimonial ? (
-        <div className="testimonial-banner">
-          <img
-            src={getImageUrl()}
-            alt={
-              activeTestimonial.clientName
-            }
-          />
+      {/* ================= HEADER ================= */}
 
-          <div className="testimonial-overlay">
-            <h3>
-              {
-                activeTestimonial.clientName
-              }
-            </h3>
+      <div className="testimonial-header">
 
-            <p>
-              {
-                activeTestimonial.review
-              }
-            </p>
-          </div>
-        </div>
-      ) : (
-        <p>
-          No testimonials
-          available
+        <span className="tag">
+          Wedding Stories & Experiences
+        </span>
+
+        <h2>
+          WORDS FROM
+          <span>
+            {" "}
+            OUR COUPLES{" "}
+          </span>
+        </h2>
+
+        <p className="testimonial-subtext">
+
+          Real emotions.
+          Genuine moments.
+          Beautiful memories
+          shared by the couples
+          who trusted us to
+          capture their wedding
+          story.
+
         </p>
-      )}
 
-      {/* Dots */}
-      <div className="testimonial-dots">
-        {testimonials.map(
-          (
-            _,
-            index
-          ) => (
-            <button
-              key={index}
-              className={`dot ${
-                activeIndex ===
-                index
-                  ? "active"
-                  : ""
-              }`}
-              onClick={() =>
-                setActiveIndex(
-                  index
-                )
-              }
-            />
-          )
-        )}
       </div>
+
+      {/* ================= CARDS ================= */}
+
+      <div
+        className="journal-container"
+        ref={containerRef}
+      >
+
+        <div className="journal-scroll-wrapper">
+
+          {reviews.map(
+            (
+              item,
+              index
+            ) => (
+
+              <div
+                className="journal-card"
+                key={index}
+              >
+
+                {/* ================= IMAGE ================= */}
+
+                <div className="journal-img-box">
+
+                  <img
+                    src={getImageUrl(
+                      item
+                    )}
+                    alt={
+                      item.clientName
+                    }
+                  />
+
+                  <div className="floating-title-box">
+
+                    <span className="venue-name">
+                      VERIFIED CLIENT
+                    </span>
+
+                    <h3 className="card-title">
+                      {
+                        item.clientName
+                      }
+                    </h3>
+
+                  </div>
+
+                </div>
+
+                {/* ================= CONTENT ================= */}
+
+                <div className="card-body">
+
+                  <p className="card-text">
+                    “{
+                      item.review
+                    }”
+                  </p>
+
+                  <div className="card-footer">
+
+                    <span>
+                      ★★★★★
+                    </span>
+
+                    <span className="review-type">
+                      Verified Couple
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            )
+          )}
+
+        </div>
+
+      </div>
+
     </section>
   );
 }

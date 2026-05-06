@@ -1,57 +1,131 @@
-import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Calendar } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import {
+  useState,
+  useEffect,
+  useRef,
+} from "react";
+
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  Calendar,
+} from "lucide-react";
+
+import {
+  Link,
+  useLocation,
+} from "react-router-dom";
+
 import { NavHashLink } from "react-router-hash-link";
+
 import logoimg from "../../assets/logo.png";
+
 import "./Navbar.css";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
+
+  const [menuOpen, setMenuOpen] =
+    useState(false);
+
+  const [mobileExpanded, setMobileExpanded] =
+    useState(null);
+
+  const [scrolled, setScrolled] =
+    useState(false);
 
   const location = useLocation();
 
+  const navbarRef = useRef(null);
+
+  /* ================= SCROLL EFFECT ================= */
+
   useEffect(() => {
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
     };
+
   }, []);
 
+  /* ================= CLOSE MOBILE ================= */
+
   useEffect(() => {
+
     setMenuOpen(false);
     setMobileExpanded(null);
+
   }, [location]);
 
-  /* Updated Navigation Items */
+  /* ================= BODY LOCK ================= */
+
+  useEffect(() => {
+
+    if (menuOpen) {
+      document.body.style.overflow =
+        "hidden";
+    } else {
+      document.body.style.overflow =
+        "auto";
+    }
+
+    return () => {
+      document.body.style.overflow =
+        "auto";
+    };
+
+  }, [menuOpen]);
+
+  /* ================= NAV ITEMS ================= */
+
   const navItems = [
-    { title: "Home", link: "/" },
+
+    {
+      title: "Home",
+      link: "/",
+    },
 
     {
       title: "Weddings",
       link: "/gallery",
+
       submenu: [
         {
           title: "Traditional Wedding",
-          link: "/galleryDetails/traditional-wedding",
+          link:
+            "/galleryDetails/traditional-wedding",
         },
+
         {
           title: "Destination Wedding",
-          link: "/galleryDetails/destination-wedding",
+          link:
+            "/galleryDetails/destination-wedding",
         },
+
         {
           title: "Reception",
-          link: "/galleryDetails/reception",
+          link:
+            "/galleryDetails/reception",
         },
+
         {
           title: "Sangeet & Haldi",
-          link: "/galleryDetails/sangeet-haldi",
+          link:
+            "/galleryDetails/sangeet-haldi",
         },
       ],
     },
@@ -59,10 +133,12 @@ export default function Navbar() {
     {
       title: "Pre Wedding",
       link: "/gallery",
+
       submenu: [
         {
           title: "Pre Wedding",
-          link: "/galleryDetails/pre-wedding",
+          link:
+            "/galleryDetails/pre-wedding",
         },
       ],
     },
@@ -70,14 +146,18 @@ export default function Navbar() {
     {
       title: "Maternity & Baby",
       link: "/gallery",
+
       submenu: [
         {
           title: "Maternity Photography",
-          link: "/galleryDetails/maternity",
+          link:
+            "/galleryDetails/maternity",
         },
+
         {
           title: "Baby Photography",
-          link: "/galleryDetails/baby-shoots",
+          link:
+            "/galleryDetails/baby-shoots",
         },
       ],
     },
@@ -85,10 +165,12 @@ export default function Navbar() {
     {
       title: "Portraits",
       link: "/gallery",
+
       submenu: [
         {
           title: "Portrait Photography",
-          link: "/galleryDetails/bridal",
+          link:
+            "/galleryDetails/bridal",
         },
       ],
     },
@@ -96,83 +178,162 @@ export default function Navbar() {
     {
       title: "Events",
       link: "/gallery",
+
       submenu: [
         {
           title: "Event Photography",
-          link: "/galleryDetails/birthday",
+          link:
+            "/galleryDetails/birthday",
         },
       ],
     },
 
-    { title: "Packages", link: "/#packages" },
-    { title: "Contact", link: "/#contact" },
+    {
+      title: "Packages",
+      link: "/#packages",
+    },
+
+    {
+      title: "Contact",
+      link: "/#contact",
+    },
   ];
 
   return (
-    <nav className={`navbar-wrapper ${scrolled ? "scrolled" : ""}`}>
+
+    <nav
+      ref={navbarRef}
+      className={`navbar-wrapper ${
+        scrolled ? "scrolled" : ""
+      }`}
+    >
+
       <div className="navbar-container">
-        
-        {/* Logo */}
+
+        {/* ================= LOGO ================= */}
+
         <Link to="/" className="logo">
-          <img src={logoimg} alt="Studio Logo" />
+
+          <img
+            src={logoimg}
+            alt="Studio Logo"
+          />
+
+          <div className="logo-text">
+
+            <h2>
+              DP PHOTOGRAPHY
+            </h2>
+
+            <p>
+              WEDDING STORIES
+            </p>
+
+          </div>
+
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* ================= DESKTOP NAV ================= */}
+
         <ul className="desktop-nav">
+
           {navItems.map((item, index) => (
+
             <li
               key={index}
-              className={item.submenu ? "has-submenu" : ""}
+              className={
+                item.submenu
+                  ? "has-submenu"
+                  : ""
+              }
             >
+
               {item.link.includes("#") ? (
-                <NavHashLink smooth to={item.link}>
+
+                <NavHashLink
+                  smooth
+                  to={item.link}
+                >
+
                   {item.title}
+
                   {item.submenu && (
-                    <ChevronDown size={14} className="chevron" />
+                    <ChevronDown
+                      size={14}
+                      className="chevron"
+                    />
                   )}
+
                 </NavHashLink>
+
               ) : (
+
                 <Link
                   to={item.link}
                   className={
-                    location.pathname.includes(item.link)
+                    location.pathname ===
+                    item.link
                       ? "active"
                       : ""
                   }
                 >
+
                   {item.title}
+
                   {item.submenu && (
-                    <ChevronDown size={14} className="chevron" />
+                    <ChevronDown
+                      size={14}
+                      className="chevron"
+                    />
                   )}
+
                 </Link>
               )}
 
-              {/* Desktop Dropdown */}
+              {/* ================= DROPDOWN ================= */}
+
               {item.submenu && (
+
                 <div className="mega-dropdown">
+
                   <ul className="dropdown-content">
-                    {item.submenu.map((sub, i) => (
-                      <li key={i}>
-                        <Link to={sub.link}>
-                          {sub.title}
-                        </Link>
-                      </li>
-                    ))}
+
+                    {item.submenu.map(
+                      (sub, i) => (
+
+                        <li key={i}>
+
+                          <Link to={sub.link}>
+                            {sub.title}
+                          </Link>
+
+                        </li>
+                      )
+                    )}
+
                   </ul>
+
                 </div>
               )}
             </li>
           ))}
         </ul>
 
-        {/* Right Side Actions */}
+        {/* ================= ACTIONS ================= */}
+
         <div className="nav-actions">
+
           <a
             href="tel:9840767566"
             className="action-btn call-btn"
           >
+
             <Phone size={16} />
-            <span>9840767566</span>
+
+            <span>
+              9840767566
+            </span>
+
           </a>
 
           <NavHashLink
@@ -180,39 +341,55 @@ export default function Navbar() {
             to="/#contact"
             className="action-btn book-btn"
           >
+
             <Calendar size={16} />
-            <span>BOOK NOW</span>
+
+            <span>
+              BOOK NOW
+            </span>
+
           </NavHashLink>
 
-          {/* Mobile Menu Toggle */}
+          {/* ================= MOBILE TOGGLE ================= */}
+
           <button
             className="menu-toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() =>
+              setMenuOpen(!menuOpen)
+            }
           >
+
             {menuOpen ? (
               <X size={28} />
             ) : (
               <Menu size={28} />
             )}
+
           </button>
         </div>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* ================= OVERLAY ================= */}
+
       <div
         className={`mobile-sidebar-overlay ${
           menuOpen ? "show" : ""
         }`}
-        onClick={() => setMenuOpen(false)}
+        onClick={() =>
+          setMenuOpen(false)
+        }
       />
 
-      {/* Mobile Sidebar */}
+      {/* ================= MOBILE SIDEBAR ================= */}
+
       <div
         className={`mobile-sidebar ${
           menuOpen ? "open" : ""
         }`}
       >
+
         <div className="mobile-header">
+
           <img
             src={logoimg}
             alt="Logo"
@@ -221,18 +398,26 @@ export default function Navbar() {
 
           <X
             size={28}
-            onClick={() => setMenuOpen(false)}
+            onClick={() =>
+              setMenuOpen(false)
+            }
           />
+
         </div>
 
         <div className="mobile-nav-content">
+
           {navItems.map((item, index) => (
+
             <div
               key={index}
               className="mobile-item-group"
             >
+
               <div className="mobile-link-row">
+
                 {item.link.includes("#") ? (
+
                   <NavHashLink
                     smooth
                     to={item.link}
@@ -241,9 +426,13 @@ export default function Navbar() {
                       setMenuOpen(false)
                     }
                   >
+
                     {item.title}
+
                   </NavHashLink>
+
                 ) : (
+
                   <Link
                     to={item.link}
                     onClick={() =>
@@ -251,37 +440,50 @@ export default function Navbar() {
                       setMenuOpen(false)
                     }
                   >
+
                     {item.title}
+
                   </Link>
                 )}
 
                 {item.submenu && (
+
                   <button
                     className="expand-btn"
                     onClick={() =>
+
                       setMobileExpanded(
-                        mobileExpanded === index
+                        mobileExpanded ===
+                          index
                           ? null
                           : index
                       )
                     }
                   >
+
                     <ChevronDown
                       size={20}
                       className={
-                        mobileExpanded === index
+                        mobileExpanded ===
+                        index
                           ? "rotate"
                           : ""
                       }
                     />
+
                   </button>
                 )}
               </div>
 
               {item.submenu &&
-                mobileExpanded === index && (
-                  <div className="mobile-sub-list">
-                    {item.submenu.map((sub, i) => (
+                mobileExpanded ===
+                  index && (
+
+                <div className="mobile-sub-list">
+
+                  {item.submenu.map(
+                    (sub, i) => (
+
                       <Link
                         key={i}
                         to={sub.link}
@@ -289,11 +491,15 @@ export default function Navbar() {
                           setMenuOpen(false)
                         }
                       >
+
                         {sub.title}
+
                       </Link>
-                    ))}
-                  </div>
-                )}
+                    )
+                  )}
+
+                </div>
+              )}
             </div>
           ))}
         </div>

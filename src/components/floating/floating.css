@@ -1,121 +1,128 @@
-/* Container */
+/* ================= CONTAINER ================= */
 .floating-container {
   position: fixed;
-  bottom: 35px;
-  right: 35px;
+  bottom: 30px;
+  right: 30px;
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: float-box 4s infinite ease-in-out;
 }
 
-/* Glassmorphism Button */
+/* ================= BUTTON ================= */
 .floating-chat-glass {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 24px;
+  gap: 10px;
+  padding: 12px 20px;
 
-  /* changed from white glass to dark glass */
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  /* 🔥 LIGHT GLASS STYLE */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  border: 1px solid rgba(197, 160, 89, 0.4);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 100px;
   text-decoration: none;
-  z-index: 2;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
 }
 
-/* Icon Styling */
+/* ================= ICON ================= */
 .icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #c5a059;
-  filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.3));
+  color: var(--premium-dark);
+  transition: 0.3s;
 }
 
-/* Label Styling */
+/* ================= LABEL ================= */
 .chat-label {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #ffffff; /* changed from black */
+  color: var(--premium-dark);
+  transition: 0.3s;
 }
 
-/* Hover Effect */
+/* ================= HOVER ================= */
 .floating-chat-glass:hover {
-  transform: translateY(-8px) scale(1.05);
-  background: #c5a059;
-  border-color: #c5a059;
+  transform: translateY(-5px) scale(1.04);
+
+  /* 🔥 brand gradient */
+  background: linear-gradient(
+    135deg,
+    var(--brand-moments),
+    var(--brand-unfolds)
+  );
+
+  border-color: transparent;
 }
 
 .floating-chat-glass:hover .icon-wrapper,
 .floating-chat-glass:hover .chat-label {
-  color: #ffffff;
+  color: #fff;
 }
 
-/* CONSTANT GLOW EFFECT */
+/* ================= GLOW ================= */
 .floating-glow {
   position: absolute;
   width: 110%;
   height: 110%;
   background: radial-gradient(
     circle,
-    rgba(197, 160, 89, 0.6) 0%,
+    rgba(230, 138, 46, 0.15),
     transparent 70%
   );
   border-radius: 100px;
-  z-index: 1;
-  animation: constant-glow 2.5s infinite alternate ease-in-out;
+  z-index: -1;
+  animation: glow-soft 3s infinite alternate ease-in-out;
 }
 
-@keyframes constant-glow {
+@keyframes glow-soft {
   0% {
     transform: scale(0.9);
-    opacity: 0.4;
-    filter: blur(15px);
+    opacity: 0.2;
+    filter: blur(10px);
   }
   100% {
     transform: scale(1.2);
-    opacity: 0.8;
-    filter: blur(25px);
+    opacity: 0.4;
+    filter: blur(20px);
   }
 }
 
-/* Floating Animation */
-.floating-container {
-  animation: float-box 4s infinite ease-in-out;
-}
-
+/* ================= FLOAT ================= */
 @keyframes float-box {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* Mobile: Circle Only */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+  .floating-container {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floating-chat-glass {
+    padding: 14px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
   .chat-label {
     display: none;
   }
 
-  .floating-chat-glass {
-    padding: 18px;
-    border-radius: 50%;
-  }
-
-  .floating-container {
-    bottom: 25px;
-    right: 25px;
+  .icon-wrapper {
+    font-size: 18px;
   }
 }

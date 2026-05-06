@@ -1,157 +1,402 @@
+/* ================= TESTIMONIAL SECTION ================= */
+
 .testimonials {
-  padding: 60px 20px;
+  padding: 90px 20px;
+  background: var(--premium-bg);
+  overflow: hidden;
   text-align: center;
-  background: #0f0f0f; /* changed from white */
 }
 
-/* small subtitle */
-.tag {
+/* ================= HEADER ================= */
+
+.testimonial-header {
+  max-width: 760px;
+  margin: 0 auto 70px;
+}
+
+/* ================= TAG ================= */
+
+.testimonials .tag {
   font-size: 0.6rem;
   letter-spacing: 3px;
-  color: #bdbdbd; /* updated */
-  display: block;
-  margin-bottom: 6px;
-}
-
-/* heading */
-.testimonials h2 {
-  font-family: "Cormorant Garamond";
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
-  color: #ffffff; /* added */
-}
-
-/* banner */
-.testimonial-banner {
-  position: relative;
-  max-width: 950px;
-  margin: auto;
-  overflow: hidden;
-  animation: testimonialFade 0.8s ease-in-out;
-}
-
-/* image */
-.testimonial-banner img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* optional hover zoom */
-.testimonial-banner:hover img {
-  transform: scale(1.03);
-}
-
-/* gold overlay */
-.testimonial-overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 70%;
-  background: linear-gradient(
-    to right,
-    rgba(197,160,89,.95),
-    rgba(197,160,89,.7),
-    rgba(197,160,89,0)
-  );
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 25px;
-  text-align: left;
-}
-
-/* name */
-.testimonial-overlay h3 {
-  font-family: "Cormorant Garamond";
-  font-size: 1.3rem;
+  color: var(--brand-moments);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  display: inline-block;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 
-/* text */
-.testimonial-overlay p {
-  font-size: 0.75rem;
-  line-height: 1.6;
-  max-width: 260px;
-  margin-bottom: 15px;
-}
+/* ================= TITLE ================= */
 
-/* button */
-.testimonial-overlay button {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 8px 16px;
-  font-size: 0.6rem;
+.testimonial-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--premium-dark);
   letter-spacing: 2px;
+  margin-bottom: 18px;
 }
 
-/* dots */
-.testimonial-dots {
-  margin-top: 20px;
+.testimonial-header h2 span {
+  color: var(--brand-moments);
+  font-style: italic;
+}
+
+/* ================= ACCENT LINE ================= */
+
+.testimonial-header::after {
+  content: "";
+  width: 50px;
+  height: 1px;
+  background: var(--brand-moments);
+  display: block;
+  margin: 18px auto 0;
+}
+
+/* ================= SUBTEXT ================= */
+
+.testimonial-subtext {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 22px auto 0;
+}
+
+/* ================= SCROLL CONTAINER ================= */
+
+.journal-container {
+  width: 100%;
+  overflow-x: auto;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  position: relative;
+}
+
+.journal-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================= CARD WRAPPER ================= */
+
+.journal-scroll-wrapper {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 30px;
+
+  width: max-content;
+
+  margin: auto;
+  padding: 10px 5px;
 }
 
-.testimonial-dots .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background: #444; /* darker inactive dots */
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* ================= CARD ================= */
+
+.journal-card {
+  width: 360px;
+  flex-shrink: 0;
+
+  background: #fff;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  scroll-snap-align: center;
+
+  transition: all 0.45s ease;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.05);
+
+  border:
+    1px solid rgba(0,0,0,0.05);
 }
 
-.testimonial-dots .dot.active {
-  background: #c5a059;
-  transform: scale(1.3);
+/* hover */
+
+.journal-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.08);
 }
 
-/* smooth fade animation */
-@keyframes testimonialFade {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
+/* ================= IMAGE ================= */
+
+.journal-img-box {
+  position: relative;
+  overflow: hidden;
 }
 
-/* tablet */
-@media (min-width: 768px) {
-  .testimonial-banner img {
-    height: 320px;
-  }
+.journal-img-box img {
+  width: 100%;
+  height: 470px;
 
-  .testimonial-overlay {
-    padding: 40px;
-  }
+  object-fit: cover;
+
+  transition: transform 0.8s ease;
 }
 
-/* desktop */
-@media (min-width: 1024px) {
+.journal-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ================= OVERLAY ================= */
+
+.floating-title-box {
+  position: absolute;
+
+  left: 20px;
+  bottom: 20px;
+
+  background:
+    rgba(0,0,0,0.35);
+
+  backdrop-filter: blur(10px);
+
+  padding: 16px 20px;
+
+  border-radius: 12px;
+
+  width: calc(100% - 40px);
+}
+
+/* venue */
+
+.venue-name {
+  display: block;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.55rem;
+  font-weight: 500;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color: #E6C89C;
+
+  margin-bottom: 8px;
+}
+
+/* couple */
+
+.card-title {
+  font-family: var(--font-serif);
+
+  font-size: 1.8rem;
+  font-weight: 400;
+
+  color: #fff;
+
+  margin: 0;
+}
+
+/* ================= CONTENT ================= */
+
+.card-body {
+  padding: 26px;
+}
+
+/* review */
+
+.card-text {
+  font-family: var(--font-sans);
+
+  font-size: 0.9rem;
+  line-height: 1.9;
+
+  color: #555;
+
+  margin-bottom: 24px;
+}
+
+/* footer */
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top:
+    1px solid rgba(0,0,0,0.06);
+
+  padding-top: 18px;
+
+  font-size: 0.65rem;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: var(--brand-moments);
+
+  font-family: var(--font-sans);
+}
+
+.review-type {
+  color: var(--text-muted);
+}
+
+/* =======================================================
+   ================= PREMIUM MOBILE CSS ==================
+   ======================================================= */
+
+@media (max-width: 768px) {
+
   .testimonials {
-    padding: 90px 20px;
+    padding: 80px 18px;
+
+   
   }
 
-  .testimonial-banner img {
-    height: 360px;
+  /* ================= HEADER ================= */
+
+  .testimonial-header {
+    margin-bottom: 55px;
   }
 
-  .testimonial-overlay h3 {
-    font-size: 1.6rem;
+  .testimonials .tag {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: #c9a46a;
   }
 
-  .testimonial-overlay p {
+  .testimonial-header h2 {
+    font-size: 2rem;
+    line-height: 1.35;
+    letter-spacing: 1px;
+  }
+
+  .testimonial-subtext {
     font-size: 0.9rem;
+    line-height: 1.9;
+    color: #777;
+    padding: 0 6px;
+  }
+
+  /* ================= MOBILE SCROLL ================= */
+
+  .journal-container {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+  }
+
+  .journal-scroll-wrapper {
+    gap: 22px;
+    padding-left: 12px;
+    padding-right: 20px;
+  }
+
+  /* ================= CARD ================= */
+
+  .journal-card {
+    width: 300px;
+
+    border-radius: 24px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,1) 0%,
+        rgba(252,249,245,1) 100%
+      );
+
+    border:
+      1px solid rgba(201,164,106,0.15);
+
+    box-shadow:
+      0 15px 40px rgba(0,0,0,0.06),
+      0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .journal-card:active {
+    transform: scale(0.98);
+  }
+
+  /* ================= IMAGE ================= */
+
+  .journal-img-box {
+    border-radius: 24px 24px 0 0;
+  }
+
+  .journal-img-box img {
+    height: 400px;
+  }
+
+  /* ================= OVERLAY ================= */
+
+  .floating-title-box {
+    left: 18px;
+    bottom: 18px;
+
+    width: calc(100% - 36px);
+
+    padding: 16px 18px;
+
+    border-radius: 16px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.18)
+      );
+
+    backdrop-filter: blur(14px);
+
+    border:
+      1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .venue-name {
+    font-size: 0.58rem;
+    letter-spacing: 3px;
+    color: #f1d2a4;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 1.55rem;
+    line-height: 1.3;
+  }
+
+  /* ================= CONTENT ================= */
+
+  .card-body {
+    padding: 28px 24px;
+  }
+
+  .card-text {
+    font-size: 0.88rem;
+    line-height: 2;
+    color: #5f5f5f;
+    margin-bottom: 26px;
+  }
+
+  /* ================= FOOTER ================= */
+
+  .card-footer {
+    padding-top: 20px;
+
+    border-top:
+      1px solid rgba(201,164,106,0.12);
+
+    font-size: 0.62rem;
+    letter-spacing: 2.5px;
+
+    color: #b58a52;
+  }
+
+  .review-type {
+    color: #999;
   }
 }

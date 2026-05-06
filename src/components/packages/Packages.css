@@ -1,212 +1,562 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400&display=swap');
+/* ================= GOOGLE FONTS ================= */
 
-/* ================= PACKAGES SECTION ================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap');
+
+/* ================= ROOT VARIABLES ================= */
+
+:root {
+
+  --brand-moments: #E68A2E;
+  --brand-unfolds: #8B2626;
+
+  --premium-bg: #F9F7F2;
+  --premium-surface: #F3EFE8;
+  --premium-dark: #2D2D2D;
+
+  --text-muted: #777;
+  --border-light: rgba(0,0,0,0.08);
+
+  --font-serif:
+    'Playfair Display',
+    serif;
+
+  --font-sans:
+    'Montserrat',
+    sans-serif;
+}
+
+/* ================= GLOBAL ================= */
+
+body {
+
+  margin: 0;
+  padding: 0;
+
+  background:
+    var(--premium-bg);
+
+  color:
+    var(--premium-dark);
+
+  font-family:
+    var(--font-sans);
+}
+
+/* ================= SECTION ================= */
+
 .packages {
-  padding: 80px 20px;
-  background: #0f0f0f; /* changed from light */
+
+  padding: 100px 20px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #faf7f2,
+      #f5efe7
+    );
+
   text-align: center;
+
   overflow: hidden;
 }
 
-/* small top text */
-.packages-header p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: #c5a059;
-  text-transform: uppercase;
-  margin-bottom: 15px;
+/* ================= HEADER ================= */
+
+.packages-header {
+
+  max-width: 760px;
+
+  margin: auto auto 70px;
 }
 
-/* main heading */
+.packages-header p {
+
+  font-size: 0.68rem;
+
+  letter-spacing: 4px;
+
+  color:
+    var(--brand-moments);
+
+  text-transform: uppercase;
+
+  margin-bottom: 14px;
+
+  font-family:
+    var(--font-sans);
+}
+
 .packages-header h2 {
-  font-family: "Cormorant Garamond", serif;
+
+  font-family:
+    var(--font-serif);
+
   font-size: 3rem;
-  font-weight: 400;
-  color: #ffffff; /* changed */
+
+  font-weight: 300;
+
+  color:
+    var(--premium-dark);
+
   letter-spacing: 2px;
-  margin-bottom: 50px;
+
+  line-height: 1.3;
+
+  margin: 0;
 }
 
 /* ================= GRID ================= */
+
 .packages-container {
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
   gap: 30px;
+
   max-width: 1200px;
+
   margin: auto;
+
+  align-items: stretch;
 }
 
 /* ================= CARD ================= */
+
 .package-card {
-  background: #1a1a1a; /* changed from white */
-  padding: 40px 25px;
-  border: 1px solid #2a2a2a;
-  transition: 0.4s ease;
+
   position: relative;
-  min-height: 550px;
+
+  background:
+    rgba(255,255,255,0.65);
+
+  backdrop-filter: blur(10px);
+
+  border:
+    1px solid rgba(0,0,0,0.06);
+
+  border-radius: 24px;
+
+  padding: 45px 32px;
+
+  min-height: 580px;
 
   display: flex;
+
   flex-direction: column;
+
+  justify-content: space-between;
+
+  transition:
+    all 0.45s ease;
+
+  overflow: hidden;
 }
+
+/* subtle glow */
+
+.package-card::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.25),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+/* hover */
 
 .package-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+
+  transform:
+    translateY(-10px);
+
+  border-color:
+    rgba(230,138,46,0.35);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.08);
 }
 
-/* featured card */
+/* featured */
+
 .package-card.featured {
-  background: #222;
-  border: 1px solid #c5a059;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #f8f0e6,
+      #f3e7d8
+    );
+
+  border:
+    1px solid rgba(230,138,46,0.45);
+
+  transform:
+    scale(1.03);
 }
 
-/* badge */
+/* ================= BADGE ================= */
+
 .badge {
+
   position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #c5a059;
-  color: white;
-  padding: 6px 16px;
-  font-size: 0.6rem;
-  letter-spacing: 2px;
-  font-family: "Montserrat", sans-serif;
-}
 
-/* package title */
-.package-card h3 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  font-weight: 400;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
+  top: 18px;
+  right: 18px;
 
-/* subtitle */
-.subtitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  color: #bdbdbd;
+  background:
+    var(--brand-moments);
+
+  color: #fff;
+
+  padding: 7px 16px;
+
+  border-radius: 30px;
+
+  font-size: 0.55rem;
+
   letter-spacing: 2px;
+
   text-transform: uppercase;
-  margin-bottom: 25px;
+
+  font-family:
+    var(--font-sans);
+
+  box-shadow:
+    0 8px 18px rgba(230,138,46,0.25);
+}
+
+/* ================= TITLE ================= */
+
+.package-card h3 {
+
+  font-family:
+    var(--font-serif);
+
+  font-size: 2rem;
+
+  font-weight: 400;
+
+  color:
+    var(--premium-dark);
+
+  margin:
+    15px 0 10px;
+}
+
+/* ================= SUBTITLE ================= */
+
+.subtitle {
+
+  font-size: 0.68rem;
+
+  color:
+    var(--text-muted);
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 28px;
+
+  font-family:
+    var(--font-sans);
 }
 
 /* ================= PRICE ================= */
+
 .package-card h1 {
-  font-family: "Cormorant Garamond", serif;
+
+  font-family:
+    var(--font-serif);
+
   font-size: 3rem;
+
   font-weight: 400;
-  color: #c5a059;
+
+  color:
+    var(--brand-unfolds);
+
+  margin-bottom: 10px;
 }
 
 .package-card h1 span {
+
   font-size: 1rem;
-  color: #bdbdbd;
+
+  color:
+    var(--text-muted);
 }
 
 .event-text {
-  font-family: "Montserrat", sans-serif;
+
   font-size: 0.8rem;
-  color: #d1d1d1;
+
+  color:
+    var(--text-muted);
+
   margin-bottom: 25px;
+
+  line-height: 1.8;
 }
 
 /* ================= FEATURES ================= */
+
 .features {
-  text-align: left;
-  border-top: 1px solid #333;
-  padding-top: 20px;
-  margin-top: 20px;
+
   flex-grow: 1;
+
+  text-align: left;
+
+  border-top:
+    1px solid rgba(0,0,0,0.08);
+
+  padding-top: 22px;
+
+  margin-top: 20px;
 }
 
 .features p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.8rem;
-  color: #d1d1d1;
-  margin: 12px 0;
+
+  font-size: 0.82rem;
+
+  color: #666;
+
+  margin: 14px 0;
+
+  line-height: 1.8;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 8px;
 }
 
 .features p::before {
-  content: "✦ ";
-  color: #c5a059;
+
+  content: "✦";
+
+  color:
+    var(--brand-moments);
+
+  flex-shrink: 0;
 }
 
 /* ================= BUTTON ================= */
+
 .package-btn {
-  margin-top: auto;
-  background: #c5a059;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  font-size: 0.6rem;
-  letter-spacing: 2px;
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: 0.3s ease;
+
   width: 100%;
+
+  min-height: 52px;
+
+  margin-top: 30px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 15px 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--brand-moments),
+      #cf741f
+    );
+
+  color: #fff;
+
+  font-size: 0.68rem;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  font-family:
+    var(--font-sans);
+
+  cursor: pointer;
+
+  transition:
+    all 0.35s ease;
 }
 
 .package-btn:hover {
-  background: #ffffff;
-  color: #0f0f0f;
+
+  transform:
+    translateY(-2px);
+
+  background:
+    var(--premium-dark);
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.12);
 }
 
 /* ================= TABLET ================= */
+
 @media (max-width: 991px) {
+
   .packages-container {
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 }
 
 /* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
+
   .packages {
-    padding: 50px 15px;
+
+    padding: 70px 14px;
+  }
+
+  .packages-header {
+
+    margin-bottom: 45px;
+  }
+
+  .packages-header p {
+
+    font-size: 0.58rem;
+
+    letter-spacing: 2px;
   }
 
   .packages-header h2 {
+
     font-size: 2rem;
+
+    line-height: 1.35;
   }
 
   .packages-container {
+
     display: flex;
+
     overflow-x: auto;
-    gap: 20px;
-    scrollbar-width: none;
+
+    gap: 18px;
+
     padding-bottom: 10px;
+
+    scroll-snap-type: x mandatory;
   }
 
   .packages-container::-webkit-scrollbar {
+
     display: none;
   }
 
   .package-card {
-    min-width: 280px;
-    min-height: auto;
+
+    min-width: 285px;
+
+    min-height: 540px;
+
+    padding: 34px 22px;
+
     flex: 0 0 auto;
+
+    scroll-snap-align: center;
   }
 
   .package-card h3 {
-    font-size: 1.5rem;
+
+    font-size: 1.55rem;
   }
 
   .package-card h1 {
-    font-size: 2.2rem;
+
+    font-size: 2.3rem;
+  }
+
+  .features p {
+
+    font-size: 0.78rem;
+  }
+
+  .package-btn {
+
+    min-height: 48px;
+
+    padding: 14px 18px;
+
+    font-size: 0.62rem;
   }
 }
 
 /* ================= SMALL MOBILE ================= */
+
 @media (max-width: 480px) {
+
+  .packages {
+
+    padding: 60px 12px;
+  }
+
   .packages-header h2 {
-    font-size: 1.7rem;
+
+    font-size: 1.65rem;
   }
 
   .package-card {
+
     min-width: 250px;
+
+    min-height: 500px;
+
+    border-radius: 20px;
+
+    padding: 30px 18px;
+  }
+
+  .package-card h3 {
+
+    font-size: 1.35rem;
+  }
+
+  .package-card h1 {
+
+    font-size: 2rem;
+  }
+
+  .event-text {
+
+    font-size: 0.75rem;
+  }
+
+  .features p {
+
+    font-size: 0.74rem;
+  }
+
+  .package-btn {
+
+    min-height: 46px;
+
+    font-size: 0.6rem;
   }
 }
