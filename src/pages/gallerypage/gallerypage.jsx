@@ -37,7 +37,7 @@ const GalleryPage = () => {
     const fetchGallery = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("https://wc-backend-zr5t.onrender.com/gallery/all");
+        const res = await axios.get("https://dp-backend-pg5r.onrender.com/gallery/all");
         setAllImages(res.data);
       } catch (error) {
         console.error("Error:", error);
