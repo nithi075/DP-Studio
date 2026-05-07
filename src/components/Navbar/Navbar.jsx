@@ -388,9 +388,15 @@ export default function Navbar() {
         }`}
       >
 
+        {/* ================= MOBILE HEADER ================= */}
+
         <div className="mobile-header">
 
-         
+          <img
+            src={logoimg}
+            alt="Logo"
+            className="mobile-logo"
+          />
 
           <button
             className="mobile-close-btn"
@@ -402,7 +408,10 @@ export default function Navbar() {
             <X size={28} />
 
           </button>
+
         </div>
+
+        {/* ================= MOBILE NAV ================= */}
 
         <div className="mobile-nav-content">
 
