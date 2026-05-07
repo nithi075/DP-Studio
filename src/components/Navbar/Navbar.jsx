@@ -390,15 +390,7 @@ export default function Navbar() {
 
         <div className="mobile-header">
 
-          <div className="mobile-logo-wrapper">
-
-            <img
-              src={logoimg}
-              alt="Logo"
-              className="mobile-logo"
-            />
-
-          </div>
+         
 
           <button
             className="mobile-close-btn"
