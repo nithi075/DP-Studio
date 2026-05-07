@@ -398,17 +398,6 @@ export default function Navbar() {
               className="mobile-logo"
             />
 
-            <div className="mobile-logo-text">
-
-              <h2>
-                DP PHOTOGRAPHY
-              </h2>
-
-              <p>
-                WEDDING STORIES
-              </p>
-
-            </div>
           </div>
 
           <button
