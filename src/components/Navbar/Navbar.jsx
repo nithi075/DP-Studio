@@ -123,9 +123,9 @@ export default function Navbar() {
         },
 
         {
-          title: "Sangeet & Haldi",
+          title: "Bridal Photography",
           link:
-            "/galleryDetails/sangeet-haldi",
+            "/galleryDetails/bridal-photography",
         },
       ],
     },
@@ -390,19 +390,37 @@ export default function Navbar() {
 
         <div className="mobile-header">
 
-          <img
-            src={logoimg}
-            alt="Logo"
-            className="mobile-logo"
-          />
+          <div className="mobile-logo-wrapper">
 
-          <X
-            size={28}
+            <img
+              src={logoimg}
+              alt="Logo"
+              className="mobile-logo"
+            />
+
+            <div className="mobile-logo-text">
+
+              <h2>
+                DP PHOTOGRAPHY
+              </h2>
+
+              <p>
+                WEDDING STORIES
+              </p>
+
+            </div>
+          </div>
+
+          <button
+            className="mobile-close-btn"
             onClick={() =>
               setMenuOpen(false)
             }
-          />
+          >
 
+            <X size={28} />
+
+          </button>
         </div>
 
         <div className="mobile-nav-content">
