@@ -36,6 +36,7 @@ export default function GalleryUpload() {
       setLoading(true);
 
       const formData = new FormData();
+
       formData.append("title", title);
       formData.append("category", category);
       formData.append("image", image);
@@ -100,6 +101,7 @@ export default function GalleryUpload() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
+
         <h2
           style={{
             textAlign: "center",
@@ -110,6 +112,7 @@ export default function GalleryUpload() {
         </h2>
 
         <form onSubmit={handleSubmit}>
+
           {/* Title */}
           <input
             style={styles.input}
@@ -125,7 +128,9 @@ export default function GalleryUpload() {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">
+              Select Category
+            </option>
 
             <option value="traditional-wedding">
               Traditional Wedding
@@ -139,8 +144,8 @@ export default function GalleryUpload() {
               Reception
             </option>
 
-            <option value="sangeet-haldi">
-              Sangeet & Haldi
+            <option value="bridal-photography">
+              Bridal Photography
             </option>
 
             <option value="pre-wedding">
@@ -196,6 +201,7 @@ export default function GalleryUpload() {
               ? "Uploading..."
               : "Upload Gallery"}
           </button>
+
         </form>
       </div>
     </div>
