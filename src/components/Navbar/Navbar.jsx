@@ -388,28 +388,15 @@ export default function Navbar() {
         }`}
       >
 
+        {/* ================= MOBILE HEADER ================= */}
+
         <div className="mobile-header">
 
-          <div className="mobile-logo-wrapper">
-
-            <img
-              src={logoimg}
-              alt="Logo"
-              className="mobile-logo"
-            />
-
-            <div className="mobile-logo-text">
-
-              <h2>
-                DP PHOTOGRAPHY
-              </h2>
-
-              <p>
-                WEDDING STORIES
-              </p>
-
-            </div>
-          </div>
+          <img
+            src={logoimg}
+            alt="Logo"
+            className="mobile-logo"
+          />
 
           <button
             className="mobile-close-btn"
@@ -421,7 +408,10 @@ export default function Navbar() {
             <X size={28} />
 
           </button>
+
         </div>
+
+        {/* ================= MOBILE NAV ================= */}
 
         <div className="mobile-nav-content">
 

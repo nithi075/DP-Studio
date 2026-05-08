@@ -35,7 +35,7 @@
 
   width: 100%;
 
-  z-index: 1000;
+  z-index: 1800;
 
   padding: 20px 0;
 
@@ -545,7 +545,7 @@
   background:
     var(--premium-bg);
 
-  z-index: 1100;
+  z-index: 2000;
 
   padding: 25px;
 
@@ -575,7 +575,7 @@
 
   backdrop-filter: blur(4px);
 
-  z-index: 1050;
+  z-index: 1900;
 
   opacity: 0;
   visibility: hidden;
@@ -606,7 +606,29 @@
 }
 
 .mobile-logo {
+
+  width: 45px;
+
   height: 45px;
+
+  object-fit: contain;
+}
+
+.mobile-close-btn {
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #1f1f1f;
 }
 
 /* ===================================================
@@ -772,6 +794,18 @@
 
   .mobile-sidebar {
     padding-top: 22px;
+  }
+
+  .desktop-nav,
+  .call-btn,
+  .book-btn {
+
+    display: none !important;
+  }
+
+  .menu-toggle {
+
+    display: flex !important;
   }
 }
 
