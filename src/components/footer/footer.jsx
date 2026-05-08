@@ -15,7 +15,7 @@ export default function Footer() {
   useEffect(() => {
     const fetchPreviews = async () => {
       try {
-        const res = await axios.get("https://wc-backend-zr5t.onrender.com/gallery/all");
+        const res = await axios.get("https://dp-backend-pg5r.onrender.com/gallery/all");
         // Taking last 5 images for a "Recent Work" feel
         setPreviewImages(res.data.slice(-5));
       } catch (error) {
