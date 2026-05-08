@@ -5,7 +5,7 @@ export default function FloatingChat() {
   const whatsappNumber = "917305357303"; // Replace with your actual WhatsApp number
 
   const message =
-    "Hello The Wedding Craft, I'm looking for a premium photography session.";
+    "Hello DP Photography, I'm looking for a premium photography session.";
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     message
