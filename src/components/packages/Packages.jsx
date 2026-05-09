@@ -1,104 +1,239 @@
+import { useState } from "react";
 import "./Packages.css";
 
-const packagesData = [
+const birthdayPackages = [
   {
-    title: "Silver",
-    subtitle: "Basic Wedding Coverage",
-    price: "₹39,999",
+    title: "Birthday Silver",
+    subtitle: "Simple Birthday Memories",
+    price: "₹15,000",
     features: [
-      "Traditional Photography – 1",
-      "Traditional Video – 1",
-      "Premium Album (12x36)",
-      "400 Photos",
-      "Calendar (6 Pages)",
-      "Coffee Mug",
-      "Pendrive Output"
+      "Traditional Photography",
+      "Premium Album",
+      "12×18 Frame",
+      "Customized Calendar"
     ]
   },
+
   {
-    title: "Gold",
-    subtitle: "Most Popular Package",
-    price: "₹49,999",
+    title: "Birthday Gold",
+    subtitle: "Complete Birthday Coverage",
+    price: "₹25,000",
+    badge: "Popular",
+    features: [
+      "Traditional Photography",
+      "Traditional Videography",
+      "Premium Album",
+      "12×18 Frame",
+      "Pendrive Delivery"
+    ]
+  }
+];
+
+const weddingPackages = [
+  {
+    title: "Classic Wedding",
+    subtitle: "Elegant Traditional Coverage",
+    price: "₹29,999",
+    features: [
+      "Traditional Photography",
+      "Premium Album (12×36)",
+      "500 Edited Photos",
+      "Traditional Frame",
+      "6 Page Calendar",
+      "Customized Photo Mug"
+    ]
+  },
+
+  {
+    title: "Premium Wedding",
+    subtitle: "Photo + Video Coverage",
+    price: "₹39,999",
     badge: "Most Popular",
     features: [
-      "Traditional Photography – 1",
-      "4K Wedding Video",
-      "Premium Album Box",
-      "500 Photos",
-      "Frame ×2",
-      "Calendar (6 Pages)",
-      "Coffee Mug",
-      "Pendrive Output"
+      "Traditional Photography",
+      "Traditional Videography",
+      "Pendrive Video Output",
+      "Premium Album (12×36)",
+      "500 Edited Photos",
+      "Traditional Frame",
+      "6 Page Calendar",
+      "Photo Mug"
     ]
   },
+
   {
-    title: "Platinum",
-    subtitle: "Premium Wedding Experience",
-    price: "₹64,999",
+    title: "Luxury Wedding",
+    subtitle: "4K Cinematic Experience",
+    price: "₹49,999",
+    features: [
+      "Traditional Photography",
+      "Candid Photography",
+      "Professional Light Setup",
+      "Traditional 4K Video",
+      "Premium Luxury Album Box",
+      "500 Edited Photos",
+      "Traditional & Candid Frames",
+      "Calendar + Mug",
+      "Pendrive Delivery"
+    ]
+  },
+
+  {
+    title: "Royal Wedding",
+    subtitle: "Complete Premium Package",
+    price: "₹54,999",
     badge: "Best Value",
     features: [
-      "Traditional + Candid Photography",
-      "Traditional + Candid Video",
-      "4K Cinematic Video",
+      "Traditional Photography",
+      "Candid Photography",
+      "Professional Light Setup",
+      "Traditional Full HD Video",
       "Luxury Album Box",
-      "450+ Photos",
-      "Frame ×2",
-      "Calendar",
-      "Coffee Mug",
-      "Pendrive Output"
+      "Traditional Album (400 Photos)",
+      "Candid Album (450 Photos)",
+      "Traditional & Candid Frames",
+      "Calendar + Mug",
+      "Pendrive Delivery",
+      "Canon & Sony Camera Setup"
     ]
   }
 ];
 
 export default function Packages() {
-  const whatsappNumber = "917305357303"; // Replace with your actual WhatsApp number
+
+  const [showBirthday, setShowBirthday] = useState(false);
+  const [showWedding, setShowWedding] = useState(true);
+
+  const whatsappNumber = "917305357303";
 
   const handleBooking = (pkg) => {
-    const message = `Hello! I'm interested in the ${pkg.title} package (${pkg.price}). Please share more details.`;
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    const message =
+      `Hello! I'm interested in the ${pkg.title} package (${pkg.price}). Please share more details.`;
+
+    const url =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
     window.open(url, "_blank");
   };
 
-  return (
-    <section className="packages" id="packages">
+  const renderPackages = (packages) => (
 
-      <div className="packages-header">
-        <p>PRICING</p>
-        <h2>OUR PACKAGES</h2>
-      </div>
+    <div className="packages-container">
 
-      <div className="packages-container">
-        {packagesData.map((item, index) => (
-          <div
-            className={`package-card ${item.badge ? "featured" : ""}`}
-            key={index}
-          >
+      {packages.map((item, index) => (
 
-            {item.badge && <div className="badge">{item.badge}</div>}
+        <div
+          className={`package-card ${item.badge ? "featured" : ""}`}
+          key={index}
+        >
+
+          {item.badge && (
+            <div className="badge">
+              {item.badge}
+            </div>
+          )}
+
+          <div>
 
             <h3>{item.title}</h3>
-            <p className="subtitle">{item.subtitle}</p>
+
+            <p className="subtitle">
+              {item.subtitle}
+            </p>
 
             <div className="price-box">
+
               <h1>{item.price}</h1>
-              <span className="event-text">/ event</span>
+
+              <span className="event-text">
+                / event
+              </span>
+
             </div>
 
             <div className="features">
+
               {item.features.map((feature, i) => (
-                <p key={i}>• {feature}</p>
+
+                <p key={i}>
+                  {feature}
+                </p>
+
               ))}
+
             </div>
 
-            <button
-              className="package-btn"
-              onClick={() => handleBooking(item)}
-            >
-              Book now ↗
-            </button>
-
           </div>
-        ))}
+
+          <button
+            className="package-btn"
+            onClick={() => handleBooking(item)}
+          >
+            Book Now ↗
+          </button>
+
+        </div>
+
+      ))}
+
+    </div>
+  );
+
+  return (
+
+    <section className="packages" id="packages">
+
+      <div className="packages-header">
+
+        <p>PRICING</p>
+
+        <h2>
+          Our Packages
+        </h2>
+
+      </div>
+
+      {/* Birthday Dropdown */}
+
+      <div className="dropdown-section">
+
+        <div
+          className="dropdown-title"
+          onClick={() => setShowBirthday(!showBirthday)}
+        >
+
+          <h3>Birthday Packages</h3>
+
+          <span>
+            {showBirthday ? "−" : "+"}
+          </span>
+
+        </div>
+
+        {showBirthday && renderPackages(birthdayPackages)}
+
+      </div>
+
+      {/* Wedding Dropdown */}
+
+      <div className="dropdown-section">
+
+        <div
+          className="dropdown-title"
+          onClick={() => setShowWedding(!showWedding)}
+        >
+
+          <h3>Wedding Packages</h3>
+
+          <span>
+            {showWedding ? "−" : "+"}
+          </span>
+
+        </div>
+
+        {showWedding && renderPackages(weddingPackages)}
+
       </div>
 
     </section>

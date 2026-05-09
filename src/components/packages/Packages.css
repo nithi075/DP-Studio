@@ -27,6 +27,11 @@
 
 /* ================= GLOBAL ================= */
 
+* {
+
+  box-sizing: border-box;
+}
+
 body {
 
   margin: 0;
@@ -40,6 +45,8 @@ body {
 
   font-family:
     var(--font-sans);
+
+  overflow-x: hidden;
 }
 
 /* ================= SECTION ================= */
@@ -447,9 +454,11 @@ body {
 
   .packages-header h2 {
 
-    font-size: 2rem;
+    font-size: 1.9rem;
 
     line-height: 1.35;
+
+    letter-spacing: 1px;
   }
 
   .packages-container {
@@ -458,53 +467,109 @@ body {
 
     overflow-x: auto;
 
-    gap: 18px;
+    gap: 16px;
 
-    padding-bottom: 10px;
+    padding:
+      5px 6px 18px;
 
     scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
   }
 
   .packages-container::-webkit-scrollbar {
 
-    display: none;
+    height: 4px;
+  }
+
+  .packages-container::-webkit-scrollbar-thumb {
+
+    background: rgba(0,0,0,0.15);
+
+    border-radius: 10px;
   }
 
   .package-card {
 
-    min-width: 285px;
+    width: 88vw;
 
-    min-height: 540px;
+    min-width: 88vw;
 
-    padding: 34px 22px;
+    max-width: 88vw;
+
+    min-height: auto;
+
+    padding: 28px 20px;
+
+    border-radius: 22px;
 
     flex: 0 0 auto;
 
     scroll-snap-align: center;
   }
 
+  .package-card.featured {
+
+    transform: none;
+  }
+
+  .package-card:hover {
+
+    transform: none;
+  }
+
   .package-card h3 {
 
-    font-size: 1.55rem;
+    font-size: 1.45rem;
   }
 
   .package-card h1 {
 
-    font-size: 2.3rem;
+    font-size: 2.1rem;
+  }
+
+  .event-text {
+
+    font-size: 0.78rem;
+
+    line-height: 1.7;
+  }
+
+  .features {
+
+    padding-top: 18px;
   }
 
   .features p {
 
-    font-size: 0.78rem;
+    font-size: 0.76rem;
+
+    line-height: 1.6;
+
+    margin: 12px 0;
   }
 
   .package-btn {
 
-    min-height: 48px;
+    margin-top: 22px;
 
-    padding: 14px 18px;
+    min-height: 50px;
+
+    border-radius: 12px;
 
     font-size: 0.62rem;
+
+    letter-spacing: 1.5px;
+  }
+
+  .badge {
+
+    top: 14px;
+    right: 14px;
+
+    font-size: 0.5rem;
+
+    padding: 6px 12px;
   }
 }
 
@@ -524,39 +589,122 @@ body {
 
   .package-card {
 
-    min-width: 250px;
+    width: 84vw;
 
-    min-height: 500px;
+    min-width: 84vw;
+
+    max-width: 84vw;
+
+    padding: 24px 18px;
 
     border-radius: 20px;
-
-    padding: 30px 18px;
   }
 
   .package-card h3 {
 
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .package-card h1 {
 
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .event-text {
 
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
 
   .features p {
 
-    font-size: 0.74rem;
+    font-size: 0.72rem;
   }
 
   .package-btn {
 
     min-height: 46px;
 
-    font-size: 0.6rem;
+    font-size: 0.58rem;
+  }
+}
+
+/* ================= DROPDOWN ================= */
+
+.dropdown-section {
+
+  max-width: 1250px;
+
+  margin: auto auto 50px;
+}
+
+.dropdown-title {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 22px 28px;
+
+  background: rgba(255,255,255,0.7);
+
+  border: 1px solid rgba(0,0,0,0.06);
+
+  border-radius: 18px;
+
+  cursor: pointer;
+
+  margin-bottom: 30px;
+
+  transition: 0.3s ease;
+}
+
+.dropdown-title:hover {
+
+  background: #fff;
+}
+
+.dropdown-title h3 {
+
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: 1.6rem;
+
+  font-weight: 400;
+
+  color: var(--premium-dark);
+}
+
+.dropdown-title span {
+
+  font-size: 2rem;
+
+  color: var(--brand-moments);
+
+  font-weight: 300;
+}
+
+/* ================= MOBILE DROPDOWN ================= */
+
+@media (max-width: 768px) {
+
+  .dropdown-title {
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+  }
+
+  .dropdown-title h3 {
+
+    font-size: 1.15rem;
+  }
+
+  .dropdown-title span {
+
+    font-size: 1.6rem;
   }
 }
