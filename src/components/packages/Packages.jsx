@@ -34,7 +34,7 @@ const birthdayPackages = [
 ];
 
 /* =========================
-   ENGAGEMENT PACKAGES
+   ENGAGEMENT & PUBERTY
 ========================= */
 
 const engagementPackages = [
@@ -184,7 +184,10 @@ export default function Packages({
       return "birthday";
     }
 
-    if (category === "engagement") {
+    if (
+      category === "engagement" ||
+      category === "puberty"
+    ) {
       return "engagement";
     }
 
@@ -339,7 +342,7 @@ export default function Packages({
 
       </div>
 
-      {/* ENGAGEMENT */}
+      {/* ENGAGEMENT & PUBERTY */}
 
       <div className="dropdown-section">
 
@@ -351,7 +354,7 @@ export default function Packages({
         >
 
           <h3>
-            Engagement Packages
+            Engagement & Puberty Packages
           </h3>
 
           <span>
