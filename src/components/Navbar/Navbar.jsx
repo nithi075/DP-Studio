@@ -363,14 +363,14 @@ export default function Navbar() {
         <div className="nav-actions">
 
           <a
-            href="tel:9840767566"
+            href="tel:7305357303"
             className="action-btn call-btn"
           >
 
             <Phone size={16} />
 
             <span>
-              9840767566
+              7305357303
             </span>
 
           </a>
