@@ -3,22 +3,42 @@ import api from "../../services/api";
 
 export default function FeaturedUpload() {
   const [title, setTitle] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
-  const [images, setImages] = useState([]);
+  const [videoUrl, setVideoUrl] =
+    useState("");
+  const [images, setImages] = useState(
+    []
+  );
 
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(
       e.target.files
     );
 
-    if (selectedFiles.length > 8) {
-      alert(
-        "Maximum 8 images only allowed"
-      );
-      return;
-    }
+    setImages((prevImages) => {
+      // Old + New images
+      let updatedImages = [
+        ...prevImages,
+        ...selectedFiles
+      ];
 
-    setImages(selectedFiles);
+      // Keep only latest 8 images
+      if (updatedImages.length > 8) {
+        updatedImages =
+          updatedImages.slice(
+            updatedImages.length - 8
+          );
+      }
+
+      return updatedImages;
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) =>
+      prevImages.filter(
+        (_, i) => i !== index
+      )
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -27,10 +47,16 @@ export default function FeaturedUpload() {
     const formData = new FormData();
 
     formData.append("title", title);
-    formData.append("videoUrl", videoUrl);
+    formData.append(
+      "videoUrl",
+      videoUrl
+    );
 
     images.forEach((image) => {
-      formData.append("images", image);
+      formData.append(
+        "images",
+        image
+      );
     });
 
     try {
@@ -99,7 +125,9 @@ export default function FeaturedUpload() {
           placeholder="Video URL"
           value={videoUrl}
           onChange={(e) =>
-            setVideoUrl(e.target.value)
+            setVideoUrl(
+              e.target.value
+            )
           }
           style={{
             width: "100%",
@@ -112,7 +140,9 @@ export default function FeaturedUpload() {
           type="file"
           multiple
           accept="image/*"
-          onChange={handleImageChange}
+          onChange={
+            handleImageChange
+          }
           style={{
             marginBottom: "20px"
           }}
@@ -123,6 +153,71 @@ export default function FeaturedUpload() {
           {images.length}/8
         </p>
 
+        {/* Image Preview */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            marginBottom: "20px"
+          }}
+        >
+          {images.map(
+            (img, index) => (
+              <div
+                key={index}
+                style={{
+                  position:
+                    "relative"
+                }}
+              >
+                <img
+                  src={URL.createObjectURL(
+                    img
+                  )}
+                  alt=""
+                  width="80"
+                  height="80"
+                  style={{
+                    objectFit:
+                      "cover",
+                    borderRadius:
+                      "5px"
+                  }}
+                />
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleRemoveImage(
+                      index
+                    )
+                  }
+                  style={{
+                    position:
+                      "absolute",
+                    top: "-5px",
+                    right: "-5px",
+                    background:
+                      "red",
+                    color: "white",
+                    border:
+                      "none",
+                    borderRadius:
+                      "50%",
+                    width: "20px",
+                    height: "20px",
+                    cursor:
+                      "pointer"
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            )
+          )}
+        </div>
+
         <button
           type="submit"
           style={{
@@ -130,7 +225,8 @@ export default function FeaturedUpload() {
             padding: "12px",
             background: "black",
             color: "white",
-            border: "none"
+            border: "none",
+            cursor: "pointer"
           }}
         >
           Upload Featured
