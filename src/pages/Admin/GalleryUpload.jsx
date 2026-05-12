@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import api from "../../services/api";
 
 export default function GalleryUpload() {
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Image Preview
+  /* =========================
+     IMAGE PREVIEW
+  ========================= */
+
   const handleImageChange = (e) => {
+
     const file = e.target.files[0];
 
     if (file) {
@@ -18,8 +23,12 @@ export default function GalleryUpload() {
     }
   };
 
-  // Upload Submit
+  /* =========================
+     SUBMIT
+  ========================= */
+
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     if (!image) {
@@ -33,6 +42,7 @@ export default function GalleryUpload() {
     }
 
     try {
+
       setLoading(true);
 
       const formData = new FormData();
@@ -45,20 +55,31 @@ export default function GalleryUpload() {
 
       alert("Gallery uploaded successfully ✅");
 
-      // Reset form
+      /* RESET */
+
       setTitle("");
       setCategory("");
       setImage(null);
       setPreview("");
+
     } catch (error) {
+
       console.log(error);
+
       alert("Upload failed ❌");
+
     } finally {
+
       setLoading(false);
     }
   };
 
+  /* =========================
+     STYLES
+  ========================= */
+
   const styles = {
+
     container: {
       minHeight: "100vh",
       background: "#f8f5ef",
@@ -84,6 +105,7 @@ export default function GalleryUpload() {
       border: "1px solid #ddd",
       borderRadius: "8px",
       outline: "none",
+      fontSize: "15px",
     },
 
     button: {
@@ -95,12 +117,20 @@ export default function GalleryUpload() {
       borderRadius: "10px",
       cursor: "pointer",
       fontWeight: "600",
+      fontSize: "15px",
     },
   };
 
+  /* =========================
+     RETURN
+  ========================= */
+
   return (
     <div style={styles.container}>
+
       <div style={styles.card}>
+
+        {/* TITLE */}
 
         <h2
           style={{
@@ -111,26 +141,37 @@ export default function GalleryUpload() {
           Gallery Upload
         </h2>
 
+        {/* FORM */}
+
         <form onSubmit={handleSubmit}>
 
-          {/* Title */}
+          {/* TITLE INPUT */}
+
           <input
             style={styles.input}
             type="text"
             placeholder="Enter title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) =>
+              setTitle(e.target.value)
+            }
           />
 
-          {/* Category Dropdown */}
+          {/* CATEGORY */}
+
           <select
             style={styles.input}
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) =>
+              setCategory(e.target.value)
+            }
           >
+
             <option value="">
               Select Category
             </option>
+
+            {/* WEDDING */}
 
             <option value="traditional-wedding">
               Traditional Wedding
@@ -152,24 +193,40 @@ export default function GalleryUpload() {
               Pre Wedding
             </option>
 
+            {/* ENGAGEMENT */}
+
+            <option value="engagement">
+              Engagement Photography
+            </option>
+
+            {/* BIRTHDAY */}
+
+            <option value="birthday">
+              Birthday Photography
+            </option>
+
+            {/* MATERNITY */}
+
             <option value="maternity">
               Maternity Photography
             </option>
+
+            {/* BABY */}
 
             <option value="baby-shoots">
               Baby Photography
             </option>
 
+            {/* PORTRAIT */}
+
             <option value="bridal">
               Portrait Photography
             </option>
 
-            <option value="birthday">
-              Event Photography
-            </option>
           </select>
 
-          {/* Image Upload */}
+          {/* IMAGE */}
+
           <input
             style={styles.input}
             type="file"
@@ -177,7 +234,8 @@ export default function GalleryUpload() {
             onChange={handleImageChange}
           />
 
-          {/* Preview */}
+          {/* PREVIEW */}
+
           {preview && (
             <img
               src={preview}
@@ -192,18 +250,23 @@ export default function GalleryUpload() {
             />
           )}
 
-          {/* Submit Button */}
+          {/* BUTTON */}
+
           <button
             type="submit"
             style={styles.button}
           >
+
             {loading
               ? "Uploading..."
               : "Upload Gallery"}
+
           </button>
 
         </form>
+
       </div>
+
     </div>
   );
 }

@@ -76,14 +76,18 @@ export default function Navbar() {
   useEffect(() => {
 
     if (menuOpen) {
+
       document.body.style.overflow =
         "hidden";
+
     } else {
+
       document.body.style.overflow =
         "auto";
     }
 
     return () => {
+
       document.body.style.overflow =
         "auto";
     };
@@ -99,11 +103,14 @@ export default function Navbar() {
       link: "/",
     },
 
+    /* ================= WEDDINGS ================= */
+
     {
       title: "Weddings",
       link: "/gallery",
 
       submenu: [
+
         {
           title: "Traditional Wedding",
           link:
@@ -130,11 +137,14 @@ export default function Navbar() {
       ],
     },
 
+    /* ================= PRE WEDDING ================= */
+
     {
       title: "Pre Wedding",
       link: "/gallery",
 
       submenu: [
+
         {
           title: "Pre Wedding",
           link:
@@ -143,11 +153,30 @@ export default function Navbar() {
       ],
     },
 
+    /* ================= ENGAGEMENT ================= */
+
+    {
+      title: "Engagement",
+      link: "/gallery",
+
+      submenu: [
+
+        {
+          title: "Engagement Photography",
+          link:
+            "/galleryDetails/engagement",
+        },
+      ],
+    },
+
+    /* ================= MATERNITY ================= */
+
     {
       title: "Maternity & Baby",
       link: "/gallery",
 
       submenu: [
+
         {
           title: "Maternity Photography",
           link:
@@ -162,11 +191,14 @@ export default function Navbar() {
       ],
     },
 
+    /* ================= PORTRAITS ================= */
+
     {
       title: "Portraits",
       link: "/gallery",
 
       submenu: [
+
         {
           title: "Portrait Photography",
           link:
@@ -175,23 +207,30 @@ export default function Navbar() {
       ],
     },
 
+    /* ================= BIRTHDAY ================= */
+
     {
-      title: "Events",
+      title: "Birthday",
       link: "/gallery",
 
       submenu: [
+
         {
-          title: "Event Photography",
+          title: "Birthday Photography",
           link:
             "/galleryDetails/birthday",
         },
       ],
     },
 
+    /* ================= PACKAGES ================= */
+
     {
       title: "Packages",
       link: "/#packages",
     },
+
+    /* ================= CONTACT ================= */
 
     {
       title: "Contact",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -10,11 +10,17 @@ import "./gallerypage.css";
 const GalleryPage = () => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [allImages, setAllImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(12);
 
+  // Client View Check
+  const queryParams = new URLSearchParams(location.search);
+  const isClientView = queryParams.get("view") === "client";
+
+  // Category Data
   const categoryData = {
     all: {
       title: "The Master Collection",
@@ -67,16 +73,37 @@ const GalleryPage = () => {
     },
 
     birthday: {
-      title: "Event Photography",
-      desc: "Birthday and special event memories.",
+      title: "Birthday Photography",
+      desc: "Capturing joyful birthday celebrations.",
+    },
+
+    engagement: {
+      title: "Engagement Photography",
+      desc: "Beautiful engagement moments captured forever.",
     },
   };
 
+  // Categories that should show packages
+  const showPackages = [
+    "traditional-wedding",
+    "destination-wedding",
+    "reception",
+    "bridal-photography",
+    "pre-wedding",
+    "birthday",
+    "engagement",
+  ].includes(category);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
     setVisibleCount(12);
   }, [category]);
 
+  // Fetch Gallery Images
   useEffect(() => {
     const fetchGallery = async () => {
       try {
@@ -88,7 +115,7 @@ const GalleryPage = () => {
 
         setAllImages(res.data);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Gallery Fetch Error:", error);
       } finally {
         setLoading(false);
       }
@@ -97,6 +124,7 @@ const GalleryPage = () => {
     fetchGallery();
   }, []);
 
+  // Filter Images
   const filteredImages =
     category && category !== "all"
       ? allImages.filter(
@@ -106,11 +134,10 @@ const GalleryPage = () => {
         )
       : [];
 
+  // Load More
   const handleViewMore = () => {
     setVisibleCount((prev) => prev + 12);
   };
-
-  const isWeddingCategory = categoryData[category]?.isWedding;
 
   return (
     <div className="gallery-page-container">
@@ -145,6 +172,7 @@ const GalleryPage = () => {
                   </span>
                 )
             )}
+
           </div>
         </div>
 
@@ -167,13 +195,14 @@ const GalleryPage = () => {
           </p>
         </header>
 
-        {/* Gallery Content */}
+        {/* Loading */}
         {loading ? (
           <div className="loader-container">
             <p>Curating your experience...</p>
           </div>
         ) : !category || category === "all" ? (
 
+          // ALL COLLECTIONS VIEW
           <div className="luxury-grid">
 
             {Object.keys(categoryData).map(
@@ -190,11 +219,9 @@ const GalleryPage = () => {
 
                       {allImages.find(
                         (img) =>
-                          img.category
-                            ?.toLowerCase()
-                            .trim() === key.toLowerCase().trim()
+                          img.category?.toLowerCase().trim() ===
+                          key.toLowerCase().trim()
                       )?.imageUrl ? (
-
                         <img
                           src={
                             allImages.find(
@@ -207,13 +234,10 @@ const GalleryPage = () => {
                           }
                           alt={key}
                         />
-
                       ) : (
-
                         <div className="empty-category-box">
                           <h4>Coming Soon</h4>
                         </div>
-
                       )}
 
                       <div className="card-content-overlay">
@@ -228,10 +252,11 @@ const GalleryPage = () => {
                   </div>
                 )
             )}
-          </div>
 
+          </div>
         ) : (
 
+          // DETAIL VIEW
           <div className="detail-view-wrapper">
 
             {filteredImages.length > 0 ? (
@@ -241,7 +266,6 @@ const GalleryPage = () => {
                   {filteredImages
                     .slice(0, visibleCount)
                     .map((image) => (
-
                       <div
                         key={image._id}
                         className="grid-item-detail fade-up"
@@ -261,9 +285,9 @@ const GalleryPage = () => {
                         </div>
                       </div>
                     ))}
+
                 </div>
 
-                {/* View More Button */}
                 {visibleCount < filteredImages.length && (
                   <div className="view-more-container fade-up">
                     <button
@@ -291,25 +315,31 @@ const GalleryPage = () => {
 
               </div>
             )}
+
           </div>
         )}
 
-        {/* Wedding Packages */}
-        {isWeddingCategory && (
+        {/* Packages Section */}
+        {showPackages && (
           <div className="wedding-packages-integrated fade-up">
-            <Packages />
+
+            <Packages
+              category={category}
+              showPrice={true}
+            />
+
           </div>
         )}
 
-        {/* Default CTA */}
-        {!isWeddingCategory && (
+        {/* CTA */}
+        {!showPackages && (
           <div className="gallery-package-cta">
 
             <h2>Love What You See?</h2>
 
             <p>
-              Explore our premium packages designed for all
-              your special events.
+              Explore our premium packages designed
+              for all your special events.
             </p>
 
             <button
@@ -321,6 +351,7 @@ const GalleryPage = () => {
 
           </div>
         )}
+
       </div>
 
       <Footer />
