@@ -130,23 +130,7 @@ const weddingPackages = [
       "Pendrive Delivery",
     ],
   },
-
-  {
-    title: "Elite Wedding Story",
-    subtitle: "The Ultimate Experience",
-    price: "₹84,999",
-    badge: "Premium",
-    features: [
-      "Traditional & Candid Photography",
-      "Traditional & Candid 4K Video",
-      "Premium Luxury Album Box (12x36 & 16x24)",
-      "Godox AD200/600 Professional Lighting",
-      "5 Min Highlight Video",
-      "6 Page Calendar & Photo Mug",
-      "Traditional & Candid Frames",
-    ],
-  },
-  {
+   {
   title: "DP Premium Wedding",
   subtitle: "Traditional + Candid Full Coverage",
   price: "₹69,999",
@@ -170,6 +154,23 @@ const weddingPackages = [
     "Pendrive Delivery",
   ],
 },
+
+  {
+    title: "Elite Wedding Story",
+    subtitle: "The Ultimate Experience",
+    price: "₹84,999",
+    badge: "Premium",
+    features: [
+      "Traditional & Candid Photography",
+      "Traditional & Candid 4K Video",
+      "Premium Luxury Album Box (12x36 & 16x24)",
+      "Godox AD200/600 Professional Lighting",
+      "5 Min Highlight Video",
+      "6 Page Calendar & Photo Mug",
+      "Traditional & Candid Frames",
+    ],
+  },
+ 
   {
     title: "The Grand DP Signature",
     subtitle: "Luxury Redefined",
