@@ -708,3 +708,87 @@ body {
     font-size: 1.6rem;
   }
 }
+
+/* =========================
+   DROPDOWN BUTTON FIX
+========================= */
+
+button.dropdown-title {
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+  color: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+button.dropdown-title:focus-visible {
+  outline: 2px solid var(--brand-moments);
+  outline-offset: 4px;
+}
+
+/* Contact price text */
+
+.contact-for-price {
+  color: var(--brand-unfolds);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin: 15px 0;
+}
+
+/* Keep package cards aligned */
+
+.package-card {
+  height: 100%;
+}
+
+.packages-container {
+  align-items: stretch;
+}
+
+/* =========================
+   SERVICES & DELIVERY
+========================= */
+
+.package-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.package-feature-group {
+  flex-grow: 0;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.package-feature-group .feature-heading {
+  margin: 0 0 12px;
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--brand-unfolds);
+}
+
+.package-feature-group p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .package-feature-group {
+    margin-top: 16px;
+    padding-top: 15px;
+  }
+
+  .package-feature-group .feature-heading {
+    font-size: 1.1rem;
+  }
+
+  .package-feature-group p {
+    font-size: 0.76rem;
+  }
+}
+
