@@ -90,53 +90,6 @@ const engagementPackages = [
 ];
 
 /* =========================
-   PUBERTY PACKAGES
-========================= */
-
-const pubertyPackages = [
-  {
-    ...engagementPackages[0],
-    title: "Puberty Package 01",
-    subtitle: "Package - 01",
-    price: "₹20,000",
-    badge: undefined,
-  },
-  {
-    ...engagementPackages[1],
-    title: "Puberty Package 02",
-    subtitle: "Package - 02",
-    price: "₹35,000",
-    badge: undefined,
-  },
-  {
-    ...engagementPackages[2],
-    title: "Puberty Package 03",
-    subtitle: "Package - 03",
-    price: "₹50,000",
-  },
-  {
-    ...engagementPackages[0],
-    title: "Puberty Package 04",
-    subtitle: "Package - 04",
-    price: "₹60,000",
-    badge: undefined,
-  },
-  {
-    ...engagementPackages[1],
-    title: "Puberty Package 05",
-    subtitle: "Package - 05",
-    price: "₹75,000",
-    badge: undefined,
-  },
-  {
-    ...engagementPackages[2],
-    title: "Puberty Package 06",
-    subtitle: "Package - 06",
-    price: "₹90,000",
-  },
-];
-
-/* =========================
    WEDDING PACKAGES
 ========================= */
 
@@ -197,8 +150,6 @@ const weddingPackages = [
     services: [
       "Traditional Photography",
       "Candid Photography",
-      "With Light Setup",
-      "Godox AD200 & AD600 Flash",
       "Traditional Video",
       "Traditional Full HD Video",
       "Traditional Video 4K Full",
@@ -223,7 +174,6 @@ const weddingPackages = [
     services: [
       "Traditional & Candid Photography",
       "Traditional & Candid 4K Video",
-      "Godox AD200/600 Professional Lighting",
       "5 Min Highlight Video",
     ],
     delivery: [
@@ -241,13 +191,87 @@ const weddingPackages = [
       "Traditional & Candid Photography",
       "Drone Photography",
       "Traditional & Candid 4K Video",
-      "Godox AD200/600 Professional Lighting",
       "5 Min Highlight Video",
     ],
     delivery: [
       "Premium Luxury Album Box (12×36 & 16×24)",
       "6 Page Calendar & Photo Mug",
       "Traditional & Candid Frames",
+    ],
+  },
+];
+
+/* =========================
+   PUBERTY PACKAGES
+   Wedding services added to
+   corresponding package levels
+========================= */
+
+const pubertyPackages = [
+  {
+    title: "Puberty Package 01",
+    subtitle: "Package - 01",
+    price: "₹20,000",
+    services: [
+      ...weddingPackages[0].services,
+    ],
+    delivery: [
+      ...engagementPackages[0].delivery,
+    ],
+  },
+  {
+    title: "Puberty Package 02",
+    subtitle: "Package - 02",
+    price: "₹35,000",
+    services: [
+      ...weddingPackages[1].services,
+    ],
+    delivery: [
+      ...engagementPackages[1].delivery,
+    ],
+  },
+  {
+    title: "Puberty Package 03",
+    subtitle: "Package - 03",
+    price: "₹50,000",
+    services: [
+      ...weddingPackages[2].services,
+    ],
+    delivery: [
+      ...engagementPackages[2].delivery,
+    ],
+  },
+  {
+    title: "Puberty Package 04",
+    subtitle: "Package - 04",
+    price: "₹60,000",
+    services: [
+      ...weddingPackages[3].services,
+    ],
+    delivery: [
+      ...engagementPackages[0].delivery,
+    ],
+  },
+  {
+    title: "Puberty Package 05",
+    subtitle: "Package - 05",
+    price: "₹75,000",
+    services: [
+      ...weddingPackages[4].services,
+    ],
+    delivery: [
+      ...engagementPackages[1].delivery,
+    ],
+  },
+  {
+    title: "Puberty Package 06",
+    subtitle: "Package - 06",
+    price: "₹95,000",
+    services: [
+      ...weddingPackages[5].services,
+    ],
+    delivery: [
+      ...engagementPackages[2].delivery,
     ],
   },
 ];
