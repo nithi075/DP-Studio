@@ -153,8 +153,6 @@ const weddingPackages = [
       "Traditional Photography",
       "Candid Photography",
       "Traditional 4K Video",
-      "Traditional Full HD Video",
-      "Traditional Video 4K Full",
     ],
     delivery: [
       "Pendrive Video Output",
@@ -262,10 +260,12 @@ const pubertyPackages = [
     subtitle: "Package - 04",
     price: "₹60,000",
     services: [
-      ...weddingPackages[3].services,
+      "Traditional Photography",
+      "Candid Photography",
+      "Traditional 4K Video",
     ],
     delivery: [
-      ...engagementPackages[0].delivery,
+      ...weddingPackages[3].delivery,
     ],
   },
   {
@@ -276,7 +276,9 @@ const pubertyPackages = [
       ...weddingPackages[4].services,
     ],
     delivery: [
-      ...engagementPackages[1].delivery,
+      "1 Photo Frame",
+      "1 Calendar",
+      "Pendrive Delivery",
       "Candid Album (24×16 - 450 Photos)",
       "Traditional Album (12×36 - 400 Photos)",
       "Candid Frame",
