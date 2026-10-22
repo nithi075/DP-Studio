@@ -276,7 +276,6 @@ const pubertyPackages = [
       ...weddingPackages[4].services,
     ],
     delivery: [
-      "1 Photo Frame",
       "1 Calendar",
       "Pendrive Delivery",
       "Candid Album (24×16 - 450 Photos)",
@@ -293,7 +292,12 @@ const pubertyPackages = [
       ...weddingPackages[5].services,
     ],
     delivery: [
-      ...engagementPackages[2].delivery,
+      "1 Calendar",
+      "Pendrive Delivery",
+      "Candid Album (24×16 - 450 Photos)",
+      "Traditional Album (12×36 - 400 Photos)",
+      "Candid Frame",
+      "Traditional Frame",
     ],
   },
 ];
