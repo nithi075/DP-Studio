@@ -27,7 +27,7 @@ const birthdayPackages = [
     badge: "Popular",
     services: [
       "Traditional Photography",
-      "Traditional Videography",
+      "Traditional 4K Video",
     ],
     delivery: [
       "Premium Album",
@@ -62,7 +62,7 @@ const engagementPackages = [
     badge: "Popular",
     services: [
       "Traditional Photo",
-      "Traditional Video",
+      "Traditional 4K Video",
     ],
     delivery: [
       "Album (12×36 - 350 Photos)",
@@ -78,7 +78,7 @@ const engagementPackages = [
     services: [
       "Traditional Photography",
       "Candid Photography",
-      "Traditional Video",
+      "Traditional 4K Video",
     ],
     delivery: [
       "Album (12×36 - 400 Photos)",
@@ -116,7 +116,7 @@ const weddingPackages = [
     price: "₹39,999",
     services: [
       "Traditional Photography",
-      "Traditional Videography",
+      "Traditional 4K Video",
       "500 Edited Photos",
     ],
     delivery: [
@@ -136,10 +136,8 @@ const weddingPackages = [
       "Traditional Full HD Video",
     ],
     delivery: [
-      "Luxury Album Box",
       "Luxury Album Box (24×16)",
-      "Traditional Album",
-      "Candid Album",
+      "Traditional & Candid Album",
       "Traditional Frame",
       "Candid Frame",
       "Calendar + Mug",
@@ -154,7 +152,7 @@ const weddingPackages = [
     services: [
       "Traditional Photography",
       "Candid Photography",
-      "Traditional Video",
+      "Traditional 4K Video",
       "Traditional Full HD Video",
       "Traditional Video 4K Full",
     ],
