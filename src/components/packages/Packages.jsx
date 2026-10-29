@@ -91,6 +91,63 @@ const engagementPackages = [
 ];
 
 /* =========================
+   BABY SHOWER PACKAGES
+   Based on the Engagement Packages
+========================= */
+
+const babyShowerPackages = [
+  {
+    title: "Baby Shower Essential",
+    subtitle: "Package - 01",
+    price: "₹25,000",
+    services: [
+      "Traditional Photo (400 Photos)",
+      "Maternity Shoot (Outdoor Shoots)",
+    ],
+    delivery: [
+      "Traditional Album (12×36)",
+      "Traditional Frame (12×18)",
+      "1 Customized Calendar",
+    ],
+  },
+  {
+    title: "Baby Shower Classic",
+    subtitle: "Package - 02",
+    price: "₹35,000",
+    badge: "Popular",
+    services: [
+      "Traditional Photo",
+      "Traditional 4K Video",
+      "Maternity Shoot (Outdoor Shoots)",
+    ],
+    delivery: [
+      "Album (12×36 - 350 Photos)",
+      "1 Photo Frame",
+      "1 Calendar",
+      "Pendrive Delivery",
+    ],
+  },
+  {
+    title: "Baby Shower Grand",
+    subtitle: "Package - 03",
+    price: "₹50,000",
+    services: [
+      "Traditional Photography",
+      "Candid Photography",
+      "Traditional 4K Video",
+      "Maternity Shoot (Outdoor Shoots)",
+    ],
+    delivery: [
+      "Album (12×36 - 400 Photos)",
+      "1 Traditional Frame",
+      "1 Candid Frame",
+      "1 Calendar",
+      "Pendrive Delivery",
+    ],
+  },
+];
+
+/* =========================
    WEDDING PACKAGES
 ========================= */
 
@@ -313,6 +370,7 @@ export default function Packages({
   const getDefaultSection = () => {
     if (category === "birthday") return "birthday";
     if (category === "engagement") return "engagement";
+    if (category === "babyshower" || category === "baby-shower") return "babyshower";
     if (category === "puberty") return "puberty";
     return "wedding";
   };
@@ -482,6 +540,12 @@ export default function Packages({
         "engagement",
         "Engagement Packages",
         engagementPackages
+      )}
+
+      {renderSection(
+        "babyshower",
+        "Baby Shower Packages",
+        babyShowerPackages
       )}
 
       {renderSection(
